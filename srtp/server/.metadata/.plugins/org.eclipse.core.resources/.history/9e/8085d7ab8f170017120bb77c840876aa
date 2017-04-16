@@ -1,0 +1,26 @@
+package com.demo.services.impl;
+
+import com.demo.database.data.TDemoUser;
+import com.demo.services.ILogService;
+
+public class UserService implements ILogService {
+
+	@Override
+	public TDemoUser login(String userName, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean logout() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void register(TDemoUser user) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+}

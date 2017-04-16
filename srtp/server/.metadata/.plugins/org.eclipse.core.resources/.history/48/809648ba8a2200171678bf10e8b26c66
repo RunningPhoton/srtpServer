@@ -1,0 +1,11 @@
+package com.demo.actions;
+
+import com.demo.database.data.TDemoUser;
+import com.demo.services.ILogService;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class LoginAction extends ActionSupport {
+	private ILogService iloginService;
+	private TDemoUser user;
+	
+}

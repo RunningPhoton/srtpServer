@@ -1,0 +1,9 @@
+package com.demo.actions;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class LoginAction extends ActionSupport {
+	private ILoginService iloginService;
+	private TDemoUser user;
+	
+}

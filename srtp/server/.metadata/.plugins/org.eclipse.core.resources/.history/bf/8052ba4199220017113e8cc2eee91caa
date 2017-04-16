@@ -1,0 +1,76 @@
+package com.demo.services;
+
+import com.demo.database.data.TDemoCircle;
+import com.demo.database.data.TDemoCircleMessage;
+import com.demo.database.data.TDemoMessage;
+import com.demo.database.data.TDemoUser;
+
+public interface IUserService {
+
+	
+	/**
+	 * 通过用户名查找到User，找不到返回空（客户端存在的user一定能找到）
+	 */
+	public TDemoUser findByUserName(String userName);
+	/**
+	 * 通过圈子名查找到圈子
+	 * @param circleName
+	 * @return
+	 */
+	public TDemoCircle findByCircleName(String circleName);
+	
+	/**
+	 * 更新用户用户信息
+	 */
+	public boolean update(TDemoUser user);
+	/**
+	 * 
+	 * 刷新信息，当服务器向客户端发送消息的时候，调用
+	 * @throws Exception
+	 */
+	public void fresh(TDemoUser user) throws Exception;
+
+	/**
+	 * 添加关注，需要客户端自检测是否已经是朋友
+	 * @param user
+	 * @throws Exception
+	 */
+	public void addFriend(TDemoUser user, String userName) throws Exception;
+
+	/**
+	 * 删除关注，需要客户端自检
+	 * @param user
+	 * @throws Exception
+	 */
+	public void removeFriend(TDemoUser user, String userName) throws Exception;
+
+	/**
+	 * 设置圈子，前置条件没有圈子，客户端自检
+	 * @param circle
+	 * @throws Exception
+	 */
+	public void setCircle(TDemoUser user, String circleName) throws Exception;
+
+	/**
+	 * 移除圈子，前提条件有圈子，客户端自检
+	 * @param circle
+	 * @throws Exception
+	 */
+	public void removeCircle(String circleName) throws Exception;
+
+	/**
+	 * 发送用户信息
+	 * @param message
+	 * @throws Exception
+	 */
+	public void sendUserMessage(String messageContent, String userName) throws Exception;
+
+	/**
+	 * 
+	 * 向圈子发送消息
+	 * @param circleMessage
+	 * @throws Exception
+	 */
+	public void sendCircleMessage(String circleMessageContent) throws Exception;
+
+}

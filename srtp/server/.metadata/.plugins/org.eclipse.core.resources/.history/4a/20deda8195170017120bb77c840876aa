@@ -1,0 +1,56 @@
+package com.demo.services;
+
+import com.demo.database.data.TDemoCircle;
+import com.demo.database.data.TDemoCircleMessage;
+import com.demo.database.data.TDemoMessage;
+import com.demo.database.data.TDemoUser;
+
+public interface IUserService {
+
+	
+	/**
+	 * 
+	 * 刷新信息，当服务器向客户端发送消息的时候，调用
+	 * @throws Exception
+	 */
+	public void fresh() throws Exception;
+
+	/**
+	 * 添加关注，需要客户端自检测是否已经是朋友
+	 * @param user
+	 * @throws Exception
+	 */
+	public void addFriend(TDemoUser user) throws Exception;
+
+	/**
+	 * 删除关注，需要客户端自检
+	 * @param user
+	 * @throws Exception
+	 */
+	public void removeFriend(TDemoUser user) throws Exception;
+
+	/**
+	 * 设置圈子，前置条件没有圈子
+	 * @param circle
+	 * @throws Exception
+	 */
+	public void setCircle(TDemoCircle circle) throws Exception;
+
+	/**
+	 * 移除圈子，前提条件有圈子
+	 * @param circle
+	 * @throws Exception
+	 */
+	public void removeCircle(TDemoCircle circle) throws Exception;
+
+	/**
+	 * 发送用户信息
+	 * @param message
+	 * @throws Exception
+	 */
+	public void sendUserMessage(TDemoMessage message) throws Exception;
+
+	public void sendCircleMessage(TDemoCircleMessage circleMessage)
+			throws Exception;
+
+}

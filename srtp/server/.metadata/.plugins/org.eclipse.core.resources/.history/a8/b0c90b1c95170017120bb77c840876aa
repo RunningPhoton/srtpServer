@@ -1,0 +1,16 @@
+package com.demo.services;
+
+import com.demo.database.data.TDemoCircle;
+import com.demo.database.data.TDemoMessage;
+import com.demo.database.data.TDemoUser;
+
+public interface IUserService {
+	
+
+	public void fresh() throws Exception;
+	public void addFriend(TDemoUser user) throws Exception;
+	public void removeFriend(TDemoUser user) throws Exception;
+	public void setCircle(TDemoCircle circle) throws Exception;
+	public void removeCircle(TDemoCircle circle) throws Exception;
+	public void sendUserMessage(TDemoMessage message) throws Exception;
+}

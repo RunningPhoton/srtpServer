@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "/WEB-INF/struts-2.3.dtd">
+        
+<struts>
+   
+   <!-- 设置Struts2常量 -->
+   <!-- 启用动态方法访问 -->
+   <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+   
+   <!-- 定义包 -->
+   <package namespace="/" name="default" extends="struts-default">
+       
+       
+       <!-- 
+       <global-results>
+       	<result name="error">/error.jsp</result>
+       </global-results>
+       -->
+       <!-- 定义Action
+       <action name="user" class="com.demo.actions.UserAction">
+           定义结果映射，指定下一个视图路径
+           <result name="success">/admin/user/userlist.jsp</result>
+       </action> -->
+       
+       <!-- 定义Action -->
+       <action name="login" class="com.demo.actions.LogAction">
+           <!-- 定义结果映射，指定下一个视图路径 -->
+           <result name="success">/index.jsp</result>
+           <result name="fail">/login.jsp</result>
+       </action> 
+   </package>
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+package com.demo.actions;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UserAction extends ActionSupport {
+	private TDemoUser user;
+	private String operObject;
+	private String operContent;
+}

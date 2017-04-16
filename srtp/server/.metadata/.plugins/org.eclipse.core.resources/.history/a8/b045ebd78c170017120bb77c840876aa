@@ -1,0 +1,42 @@
+package com.demo.services.impl;
+
+import java.util.List;
+
+import com.demo.database.data.TDemoUser;
+import com.demo.database.idao.IDaoService;
+import com.demo.services.ILogService;
+
+/**
+ * 注册，登录，登出的业务实现类
+ * @author runningphoton
+ *
+ */
+public class LogServiceImpl implements ILogService {
+	private IDaoService idaoService;
+	
+	public IDaoService getIdaoService() {
+		return idaoService;
+	}
+
+	public void setIdaoService(IDaoService idaoService) {
+		this.idaoService = idaoService;
+	}
+
+	@Override
+	public TDemoUser login(String userName, String password) throws Exception {
+		String hql = "from TDemoUser where userName='"+userName+"' and userPassword='"+password+"'";
+		List<TDemoUser> list = (List<TDemoUser>) idaoService.query(hql);
+		return null;
+	}
+
+	@Override
+	public void logout() throws Exception {
+		
+	}
+
+	@Override
+	public void register(TDemoUser user) throws Exception {
+		
+	}
+
+}

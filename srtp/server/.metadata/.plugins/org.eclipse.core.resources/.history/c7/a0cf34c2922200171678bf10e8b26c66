@@ -1,0 +1,54 @@
+package com.demo.actions;
+
+import com.demo.database.data.TDemoUser;
+import com.demo.database.idao.IDaoService;
+import com.demo.services.IUserService;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UserAction extends ActionSupport {
+	private TDemoUser user;
+	private String operObject;
+	private String operContent;
+	private IUserService iuserService;
+	
+	public IUserService getIuserService() {
+		return iuserService;
+	}
+
+	public void setIuserService(IUserService iuserService) {
+		this.iuserService = iuserService;
+	}
+
+	public TDemoUser getUser() {
+		return user;
+	}
+
+	public void setUser(TDemoUser user) {
+		this.user = user;
+	}
+
+	public String getOperObject() {
+		return operObject;
+	}
+
+	public void setOperObject(String operObject) {
+		this.operObject = operObject;
+	}
+
+	public String getOperContent() {
+		return operContent;
+	}
+
+	public void setOperContent(String operContent) {
+		this.operContent = operContent;
+	}
+
+	public String update() {
+		
+		if(iuserService.update(user)) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
+	}
+}

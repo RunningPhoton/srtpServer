@@ -1,0 +1,10 @@
+package com.demo.services;
+
+import com.demo.database.data.TDemoUser;
+
+public interface IUserService {
+	
+	public Boolean addFriend(TDemoUser user) {
+		
+	}
+}

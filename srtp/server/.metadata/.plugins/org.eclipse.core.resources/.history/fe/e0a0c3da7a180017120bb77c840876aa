@@ -1,0 +1,9 @@
+package com.demo.services.impl;
+
+import com.demo.database.idao.IDaoService;
+import com.demo.services.IUserService;
+
+public class UserService implements IUserService {
+	private IDaoService idaoService;
+	private TDemoUser user;
+}

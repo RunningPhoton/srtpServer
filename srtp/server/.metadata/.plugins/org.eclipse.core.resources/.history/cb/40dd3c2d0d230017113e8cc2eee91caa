@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+<title>注册界面</title>
+<!-- 内部文档样式表 -->
+<style>
+body {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	background-color: #87CEFF;
+}
+
+#register {
+	position: relative;
+	width: 360px;
+	/*边框样式*/
+	border: solid 10px #FFF;
+	border-radius: 10px;
+	/*边界样式*/
+	margin: 200px auto 0px;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.input-size {
+	width: 260px;
+	height: 26px;
+	padding-left: 5px; /* 左部填充 */
+	line-height: 26px;
+}
+
+.btn-submit {
+	width: 270px;
+	height: 35px;
+	line-height: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: dodgerblue;
+	border: 0px;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<div id="register">
+		<form id="form1" name="form1" method="post" action="log!register.action">
+			<dl>
+				<dt>
+					<span>注册界面</span>
+				</dt>
+				<dd>
+					<input type="text" name="user.userName" placeholder="请输入用户名"
+						required="required" autofocus="autofocus" class="input-size" />
+				</dd>
+				
+				<dd>
+					<input type="password" name="user.userPassword" placeholder="请输入密码"
+						required="required" class="input-size" />
+				</dd>
+				
+				<dd>
+					<input type="text" name="user.userName" placeholder="请输入昵称"
+						required="required" autofocus="autofocus" class="input-size" />
+				</dd>
+				<dd>
+					<input type="text" name="user.userGender" placeholder="请输入性别"
+						required="required" class="input-size" />
+				</dd>
+				<dd>
+					<input type="text" name="user.userEmail" placeholder="请输入学校"
+						required="required" class="input-size" />
+				</dd>
+				<dd>
+					<input type="submit" value="注册" class="btn-submit" />
+				</dd>
+			</dl>
+		</form>
+	</div>
+</body>
+</html>

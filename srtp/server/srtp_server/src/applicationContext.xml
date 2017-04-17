@@ -30,8 +30,8 @@ xsi:schemaLocation="
        <!-- 设置Hibernate相关属性 -->
        <property name="hibernateProperties">
           <props>
-             <!-- 没有表的时候自动根据是实例化类创建 -->
-             <prop key="hibernate.hbm2ddl.auto">create</prop>
+<!--              没有表的时候自动根据是实例化类创建
+             <prop key="hibernate.hbm2ddl.auto">update</prop> -->
              <!-- 方言 -->
              <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
              <!-- 控制台打印SQL -->
@@ -48,4 +48,15 @@ xsi:schemaLocation="
        <property name="sessionFactory" ref="sessionFactory"></property>
    </bean>
    
+   <!-- 定义业务Bean -->
+   <bean id="iuserService" class="com.demo.services.impl.UserServiceImpl">
+       <!-- 注入数据访问公共Bean -->
+       <property name="idaoService" ref="idaoService"></property>
+   </bean>
+   
+   <!-- 定义业务Bean -->
+   <bean id="ilogService" class="com.demo.services.impl.LogServiceImpl">
+       <!-- 注入数据访问公共Bean -->
+       <property name="idaoService" ref="idaoService"></property>
+   </bean>
 </beans>

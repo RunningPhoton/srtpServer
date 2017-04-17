@@ -29,10 +29,15 @@ public class LogServiceImpl implements ILogService {
 	 */
 	@Override
 	public TDemoUser login(String userName, String password) throws Exception {
+		
+		
+		
 		String hql = "from TDemoUser where userName='" + userName
 				+ "' and userPassword='" + password + "'";
 		List<TDemoUser> list = (List<TDemoUser>) idaoService.query(hql);
-		if (list == null)
+		
+		System.out.println(list.size());
+		if (list.size() == 0)
 			return null;
 		else {
 			TDemoUser user = list.get(0);
@@ -49,6 +54,9 @@ public class LogServiceImpl implements ILogService {
 	 */
 	@Override
 	public Boolean logout(TDemoUser user) throws Exception {
+//		System.out.println(user);
+//		if(user == null) user = new TDemoUser();
+//		user.setOnline(0);
 		if (user.getOnline() == 1) {
 			user.setOnline(0);
 			idaoService.update(user);
@@ -66,7 +74,7 @@ public class LogServiceImpl implements ILogService {
 		String hql = "from TDemoUser where userName='" + user.getUserName()
 				+ "'";
 		List<TDemoUser> list = (List<TDemoUser>) idaoService.query(hql);
-		if (list != null)
+		if (list.size() > 0)
 			return false;
 		// 封装用户通用字段数据
 		user.setOpertime(new Timestamp(System.currentTimeMillis()));

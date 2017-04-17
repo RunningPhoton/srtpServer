@@ -11,12 +11,12 @@ public class LogAction extends ActionSupport {
 	private ILogService ilogService;
 	private TDemoUser user;
 
-	public ILogService getIloginService() {
+	public ILogService getIlogService() {
 		return ilogService;
 	}
 
-	public void setIloginService(ILogService iloginService) {
-		this.ilogService = iloginService;
+	public void setIlogService(ILogService ilogService) {
+		this.ilogService = ilogService;
 	}
 
 	public TDemoUser getUser() {
@@ -27,26 +27,28 @@ public class LogAction extends ActionSupport {
 		this.user = user;
 	}
 	/**
-	 * user!login.action
+	 * log!login.action
 	 * 
 	 */
 	public String login() {
+		System.out.println("执行login代码");
 		try {
-			System.out.println("userName : " + user.getUserName() + 
-					" userPassword: " + user.getUserPassword());
-			
-			List<TDemoUser> list = (List<TDemoUser>) ilogService.login(user.getUserName(), user.getUserPassword());
-			if(list.size() > 0) {
-				this.user = list.get(0);
-				return SUCCESS;
-			}
-			return "loginFail";
+
+			System.out.println(user.getUserName() + " " + user.getUserPassword());
+			System.out.println(ilogService);
+			TDemoUser baseUser = ilogService.login(user.getUserName(), user.getUserPassword());
+			if(baseUser == null) 
+				return "fail";
+			return SUCCESS;
 		} catch (Exception e) {
+			System.out.println("执行login代码 catch");
 			e.printStackTrace();
 			return ERROR;
 		}
 	}
 	public String logout() {
+		System.out.println(ilogService);
+		System.out.println("执行logout代码");
 		try {
 			if(ilogService.logout(user))
 				return SUCCESS;
@@ -58,6 +60,8 @@ public class LogAction extends ActionSupport {
 		}
 	}
 	public String register() {
+		System.out.println(ilogService);
+		System.out.println("执行register代码");
 		try {
 			if(ilogService.register(user)) 
 				return SUCCESS;

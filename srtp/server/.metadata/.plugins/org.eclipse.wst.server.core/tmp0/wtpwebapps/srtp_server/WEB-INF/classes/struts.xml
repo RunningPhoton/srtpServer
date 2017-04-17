@@ -13,23 +13,21 @@
    <package namespace="/" name="default" extends="struts-default">
        
        
-       <!-- 
        <global-results>
        	<result name="error">/error.jsp</result>
        </global-results>
-       
-       定义Action
+       <!-- 定义Action
        <action name="user" class="com.demo.actions.UserAction">
            定义结果映射，指定下一个视图路径
            <result name="success">/admin/user/userlist.jsp</result>
-       </action>
-       
-       定义Action
-       <action name="login" class="com.demo.actions.LoginAction">
-           定义结果映射，指定下一个视图路径
-           <result name="success">/index.jsp</result>
-           <result name="loginFail">/login.jsp</result>
        </action> -->
+		
+       <!-- 定义Action -->
+       <action name="log" class="com.demo.actions.LogAction">
+           <!-- 定义结果映射，指定下一个视图路径 -->
+           <result name="success">/login.html</result>
+           <result name="fail">/login.html</result>
+       </action> 
    </package>
 </struts>
 

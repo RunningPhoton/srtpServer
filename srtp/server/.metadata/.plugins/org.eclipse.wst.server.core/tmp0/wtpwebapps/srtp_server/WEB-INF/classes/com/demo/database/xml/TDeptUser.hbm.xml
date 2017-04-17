@@ -10,11 +10,14 @@
 			<!-- ID生成策略 采用数据库本地的自动增长 -->
 			<generator class="native"></generator>
 		</id>
+		<property name="userGender" type="java.lang.String">
+			<column name="user_gender"></column>
+		</property>
 		<property name="userNickname" type="java.lang.String">
 			<column name="user_nickname"></column>
 		</property>
 		<property name="userName" type="java.lang.String">
-			<column name="user_name"></column>
+			<column name="user_name" unique="true"></column>
 		</property>
 		<property name="userPassword" type="java.lang.String">
 			<column name="user_password"></column>
@@ -43,6 +46,9 @@
 		
 		<many-to-one name="userCircle" class="com.demo.database.data.TDemoCircle" column="circle_id"></many-to-one>
 		
+		<property name="online" type="java.lang.Integer">
+			<column name="online"></column>
+		</property>
 		<property name="userAuthority" type="java.lang.Integer">
 			<column name="user_authority"></column>
 		</property>

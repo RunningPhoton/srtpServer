@@ -12,9 +12,9 @@
 		</id>
 
 		<many-to-one name="user"
-			column="user_id"></many-to-one>
+			column="user_id" lazy="false"></many-to-one>
 		<many-to-one name="circle"
-			column="circle_id"></many-to-one>
+			column="circle_id" lazy="false"></many-to-one>
 		
 		<property name="circleMessageContent" type="java.lang.String">
 			<column name="circle_message_content"></column>

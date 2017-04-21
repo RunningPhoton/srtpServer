@@ -3,10 +3,16 @@
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 <fullyQualifiedTypeName name="com.demo.services.ILogService"/>
-<fullyQualifiedTypeName name="com.demo.database.data.TDemoCircle"/>
-<fullyQualifiedTypeName name="com.demo.database.data.TDemoMessage"/>
 <fullyQualifiedTypeName name="com.demo.database.data.TDemoCircleMessage"/>
-<fullyQualifiedTypeName name="com.demo.database.data.TDemoUser"/>
 <fullyQualifiedTypeName name="com.demo.database.idao.IDaoService"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.demo.database.data.TDemoMessage"/>
+<fullyQualifiedTypeName name="com.demo.services.impl.UserServiceImpl"/>
+<fullyQualifiedTypeName name="com.demo.actions.UserAction"/>
+<fullyQualifiedTypeName name="com.demo.database.data.TDemoUser"/>
+<fullyQualifiedTypeName name="com.demo.services.impl.LogServiceImpl"/>
+<fullyQualifiedTypeName name="com.demo.actions.LogAction"/>
+<fullyQualifiedTypeName name="com.demo.database.data.TDemoCircle"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
 </qualifiedTypeNameHistroy>

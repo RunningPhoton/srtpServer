@@ -23,25 +23,8 @@ public class TDemoCircle implements Serializable {
 	private Set<TDemoCircleMessage> messageSet;
 	private Timestamp opertime;
 
-	public void addMessage(TDemoCircleMessage temp) {
-		if (messageSet == null) {
-			messageSet = new HashSet<TDemoCircleMessage>();
-		}
-		messageSet.add(temp);
-	}
-
-	public void addUser(TDemoUser temp) {
-		if (userSet == null)
-			userSet = new HashSet<TDemoUser>();
-		userSet.add(temp);
-	}
-
-	public void removeUser(TDemoUser temp) {
-		try {
-			userSet.remove(temp);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+	public boolean equals(TDemoCircle temp) {
+		return this.circleName.equals(temp.circleName);
 	}
 
 	public Integer getCircleId() {
@@ -69,6 +52,7 @@ public class TDemoCircle implements Serializable {
 	}
 
 	public Set<TDemoCircleMessage> getMessageSet() {
+		System.out.println("sbbbbbbdebug");
 		return messageSet;
 	}
 

@@ -1,8 +1,0 @@
-package com.demo.services;
-
-import com.demo.database.data.TDemoUser;
-
-public interface IUserService {
-	
-	public void addFriend(TDemoUser user) throws Exception;
-}

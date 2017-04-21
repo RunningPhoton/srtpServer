@@ -15,12 +15,12 @@
 		</property>
 		
 		
-		<set name="userSet" table="t_demo_user" cascade="all">
+		<set name="userSet" table="t_demo_user" inverse="false" lazy="false">
 			<key column="circle_id"></key>
 			<one-to-many class="com.demo.database.data.TDemoUser"></one-to-many>
 		</set>
 		
-		<set name="messageSet" table="t_demo_circle_message" cascade="all">
+		<set name="messageSet" table="t_demo_circle_message" inverse="false" lazy="false">
 			<key column="circle_id"></key>
 			<one-to-many class="com.demo.database.data.TDemoCircleMessage"></one-to-many>
 		</set>

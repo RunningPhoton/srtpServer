@@ -30,21 +30,26 @@
 		</property>
 		
 		
-		<set name="userFriendSet" table="t_demo_user_friend" cascade="all">
+		<set name="userFriendSet" table="t_demo_user_friend" lazy="false">
 			<key column="main_user_id"></key>
 			<many-to-many class="com.demo.database.data.TDemoUser" column="inferior_user_id"></many-to-many>
 		</set>
-	
-		<set name="userMessageSendSet" cascade="all">
+		
+		<set name="userBeenFriendSet" table="t_demo_user_friend" inverse="true" lazy="false">
+			<key column="inferior_user_id"></key>
+			<many-to-many class="com.demo.database.data.TDemoUser" column="main_user_id"></many-to-many>
+		</set>
+		
+		<set name="userMessageSendSet" lazy="false">
 			<key column="main_user_id"></key>
 			<one-to-many class="com.demo.database.data.TDemoMessage"></one-to-many>
 		</set>
-		<set name="userMessageGetSet" cascade="all">
+		<set name="userMessageGetSet" lazy="false">
 			<key column="inferior_user_id"></key>
 			<one-to-many class="com.demo.database.data.TDemoMessage"></one-to-many>
 		</set>
 		
-		<many-to-one name="userCircle" class="com.demo.database.data.TDemoCircle" column="circle_id"></many-to-one>
+		<many-to-one name="userCircle" class="com.demo.database.data.TDemoCircle" lazy="false" column="circle_id"></many-to-one>
 		
 		<property name="online" type="java.lang.Integer">
 			<column name="online"></column>

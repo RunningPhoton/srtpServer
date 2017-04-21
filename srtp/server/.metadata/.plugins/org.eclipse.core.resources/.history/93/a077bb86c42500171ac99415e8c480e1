@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.demo.database.data.TDemoCircle" table="t_demo_circle">
+		<id name="circleId" type="java.lang.Integer">
+			<column name="circle_id"></column>
+			<!-- ID生成策略 采用数据库本地的自动增长 -->
+			<generator class="native"></generator>
+		</id>
+		<property name="circleName" type="java.lang.String">
+			<column name="circle_name"></column>
+		</property>
+		
+		
+		<set name="userSet" table="t_demo_user" lazy="false">
+			<key column="circle_id"></key>
+			<one-to-many class="com.demo.database.data.TDemoUser"></one-to-many>
+		</set>
+		
+		<set name="messageSet" table="t_demo_circle_message" lazy="false">
+			<key column="circle_id"></key>
+			<one-to-many class="com.demo.database.data.TDemoCircleMessage"></one-to-many>
+		</set>
+		
+		<property name="opertime" type="java.sql.Timestamp">
+			<column name="opertime"></column>
+		</property>
+	</class>
+</hibernate-mapping>

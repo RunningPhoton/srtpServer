@@ -17,7 +17,7 @@ xsi:schemaLocation="
    <!-- 定义数据源Bean -->
    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-       <property name="url" value="jdbc:mysql://localhost:3306/srtp"></property>
+       <property name="url" value="jdbc:mysql://localhost:3306/srtp?useUnicode=yes&amp;characterEncoding=UTF-8&amp;ampuseSSL=true"></property>
        <property name="username" value="root"></property>
        <property name="password" value="hyx"></property>
    </bean>
@@ -30,8 +30,8 @@ xsi:schemaLocation="
        <!-- 设置Hibernate相关属性 -->
        <property name="hibernateProperties">
           <props>
-<!--              没有表的时候自动根据是实例化类创建
-             <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+             <!-- 没有表的时候自动根据是实例化类创建 -->
+             <prop key="hibernate.hbm2ddl.auto">create</prop>
              <!-- 方言 -->
              <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
              <!-- 控制台打印SQL -->

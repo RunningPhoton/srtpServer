@@ -43,10 +43,14 @@ public class UserAction extends ActionSupport {
 		this.operContent = operContent;
 	}
 
-	
-	
-	
 	public String update() {
+		TDemoUser tempUser = iuserService.findByUserName(this.user.getUserName());
+		tempUser.setUserGender(this.user.getUserGender());
+		tempUser.setUserCollege(this.user.getUserCollege());
+		tempUser.setUserNickname(this.user.getUserNickname());
+		tempUser.setUserPassword(this.user.getUserPassword());
+		tempUser.setGraphName(this.user.getGraphName());
+		this.user = tempUser;
 		System.out.println("执行update");
 		if(iuserService.update(this.user)) {
 			return SUCCESS;
@@ -60,6 +64,7 @@ public class UserAction extends ActionSupport {
 		try {
 			System.out.println("执行addFriend");
 			iuserService.addFriend(this.user, operObject);
+			System.out.println("success执行addFriend");
 			return SUCCESS;
 		} catch (Exception e) {
 			return ERROR;
@@ -68,7 +73,6 @@ public class UserAction extends ActionSupport {
 	public String removeFriend() {
 		this.user = iuserService.findByUserName(this.user.getUserName());
 		try {
-			System.out.println("执行removeFriend");
 			iuserService.removeFriend(this.user, operObject);
 			return SUCCESS;
 		} catch (Exception e) {
@@ -80,6 +84,7 @@ public class UserAction extends ActionSupport {
 		try {
 			System.out.println("执行setCircle");
 			iuserService.setCircle(this.user, operObject);
+			System.out.println("success 执行setCircle");
 			return SUCCESS;
 		} catch (Exception e) {
 			return ERROR;
@@ -108,8 +113,9 @@ public class UserAction extends ActionSupport {
 	public String sendCircleMessage() {
 		this.user = iuserService.findByUserName(this.user.getUserName());
 		try {
-			System.out.println("执行sendCircleMessage");
+			System.out.println("sendCircleMessage");
 			iuserService.sendCircleMessage(this.user, operContent);
+			System.out.println("success sendCircleMessage");
 			return SUCCESS;
 		} catch (Exception e) {
 			return ERROR;

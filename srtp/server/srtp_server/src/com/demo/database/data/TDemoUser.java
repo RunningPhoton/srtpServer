@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * 用户实体类 userId是在数据库的主键 userGender是用户性别 userNickname是昵称 userName是用户名
- * userPassword是密码 userCollege是学校 userGraph是头像名称 userFriendSet是好友集合
+ * userPassword是密码 userCollege是学校 userGraph是头像名称 userFriendSet是关注的人的集合 userBeenFriendSet表示被哪些人关注
  * userMessageSet是和好友聊天内容列表 userCircle是加入的圈子名称
  * 
  * @author runningphoton
@@ -24,6 +24,7 @@ public class TDemoUser implements Serializable {
 	private String userCollege;
 	private String graphName;
 	private Set<TDemoUser> userFriendSet;
+	private Set<TDemoUser> userBeenFriendSet;
 	private Set<TDemoMessage> userMessageSendSet;
 	private Set<TDemoMessage> userMessageGetSet;
 	private TDemoCircle userCircle;
@@ -31,47 +32,16 @@ public class TDemoUser implements Serializable {
 	private Integer userAuthority;
 	private Timestamp opertime;
 
+	public boolean equals(TDemoUser temp) {
+		return this.userName.equals(temp.userName);
+	}
+	
 	public String getUserGender() {
 		return userGender;
 	}
 
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
-	}
-
-	public void addUserMessageGet(TDemoMessage temp) {
-		if (userMessageGetSet == null)
-			userMessageGetSet = new HashSet<TDemoMessage>();
-		userMessageGetSet.add(temp);
-	}
-
-	public void addUserMessage(TDemoMessage temp) {
-		if (userMessageSendSet == null)
-			userMessageSendSet = new HashSet<TDemoMessage>();
-		userMessageSendSet.add(temp);
-		temp.getInferiorUser().addUserMessageGet(temp);
-	}
-
-	public void addCircleMessage(TDemoCircleMessage temp) {
-		try {
-			userCircle.addMessage(temp);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
-	public void removeFriend(TDemoUser temp) {
-		try {
-			userFriendSet.remove(temp);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
-	public void addFriend(TDemoUser temp) {
-		if (userFriendSet == null)
-			userFriendSet = new HashSet<TDemoUser>();
-		userFriendSet.add(temp);
 	}
 
 	public Integer getUserId() {
@@ -154,11 +124,6 @@ public class TDemoUser implements Serializable {
 		this.userCircle = userCircle;
 	}
 
-	public void removeUserCircle() {
-		this.userCircle.removeUser(this);
-		this.userCircle = null;
-	}
-
 	public Integer getOnline() {
 		return online;
 	}
@@ -181,6 +146,14 @@ public class TDemoUser implements Serializable {
 
 	public void setOpertime(Timestamp timestamp) {
 		this.opertime = timestamp;
+	}
+
+	public Set<TDemoUser> getUserBeenFriendSet() {
+		return userBeenFriendSet;
+	}
+
+	public void setUserBeenFriendSet(Set<TDemoUser> userBeenFriendSet) {
+		this.userBeenFriendSet = userBeenFriendSet;
 	}
 
 }

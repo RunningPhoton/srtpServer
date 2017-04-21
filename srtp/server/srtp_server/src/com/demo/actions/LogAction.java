@@ -1,7 +1,9 @@
 package com.demo.actions;
 
+import java.util.Iterator;
 import java.util.List;
 
+import com.demo.database.data.TDemoMessage;
 import com.demo.database.data.TDemoUser;
 import com.demo.database.idao.IDaoService;
 import com.demo.services.ILogService;
@@ -31,14 +33,31 @@ public class LogAction extends ActionSupport {
 	 * 
 	 */
 	public String login() {
-		System.out.println("执行login代码");
 		try {
 
+			System.out.println("执行login代码");
 			System.out.println(user.getUserName() + " " + user.getUserPassword());
-			System.out.println(ilogService);
 			TDemoUser baseUser = ilogService.login(user.getUserName(), user.getUserPassword());
 			if(baseUser == null) 
 				return "fail";
+
+			/**
+			 * 测试User登录后是否集合类自动加载
+			 */
+//			Iterator<TDemoUser> itFriend = baseUser.getUserFriendSet().iterator();
+//			while(itFriend.hasNext()) {
+//				TDemoUser temp = itFriend.next();
+//				System.out.println(temp.getUserName());
+//			}
+//			System.out.println(baseUser.getUserCircle().getCircleName());
+//			Iterator<TDemoMessage> itUserMessage = baseUser.getUserMessageSendSet().iterator();
+//			while(itUserMessage.hasNext()) {
+//				TDemoMessage ms = itUserMessage.next();
+//				System.out.println(ms.getMessageContent());
+//			}
+//			System.out.println(baseUser.getUserMessageGetSet().size());
+//			System.out.println(baseUser.getUserMessageSendSet().size());
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			System.out.println("执行login代码 catch");
@@ -47,7 +66,6 @@ public class LogAction extends ActionSupport {
 		}
 	}
 	public String logout() {
-		System.out.println(ilogService);
 		System.out.println("执行logout代码");
 		try {
 			if(ilogService.logout(user))
@@ -60,9 +78,9 @@ public class LogAction extends ActionSupport {
 		}
 	}
 	public String register() {
-		System.out.println(ilogService);
-		System.out.println("执行register代码");
 		try {
+
+			System.out.println("执行register代码");
 			if(ilogService.register(user)) 
 				return SUCCESS;
 			else 

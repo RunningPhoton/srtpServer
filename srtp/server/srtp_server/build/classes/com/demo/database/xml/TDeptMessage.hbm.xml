@@ -13,9 +13,9 @@
 		
 		
 		<many-to-one name="mainUser"
-			column="main_user_id"></many-to-one>
+			column="main_user_id" lazy="false"></many-to-one>
 		<many-to-one name="inferiorUser"
-			column="inferior_user_id"></many-to-one>
+			column="inferior_user_id" lazy="false"></many-to-one>
 		
 		
 		<property name="messageContent" type="java.lang.String">

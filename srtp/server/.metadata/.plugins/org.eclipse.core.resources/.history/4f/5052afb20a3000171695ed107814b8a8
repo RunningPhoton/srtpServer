@@ -1,0 +1,5 @@
+package com.demo.database.data;
+
+public class TDemoTempUser {
+
+}

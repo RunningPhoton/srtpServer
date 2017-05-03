@@ -46,9 +46,10 @@ public class LogServiceImpl implements ILogService {
 //			user.setOnline(0);
 //			System.out.println("user is " + user);
 //			System.out.println(user.getOnline());
-			if (user.getOnline() == 1) {
-				return null;
-			}
+			
+//			if (user.getOnline() == 1) {
+//				return null;
+//			}
 
 			user.setOnline(1);
 			idaoService.update(user);

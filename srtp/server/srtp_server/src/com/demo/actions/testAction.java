@@ -8,6 +8,7 @@ import com.demo.database.idao.IDaoService;
 import com.demo.database.idao.impl.DaoServiceImpl;
 import com.demo.services.impl.LogServiceImpl;
 import com.demo.services.impl.UserServiceImpl;
+import com.opensymphony.xwork2.ActionContext;
 
 public class testAction {
 	public static void main(String[] args) {
@@ -94,11 +95,14 @@ public class testAction {
 		userAction3.setOperContent("I am user3, I send to math");
 		userAction1.sendCircleMessage();
 		userAction3.sendCircleMessage();
-
-		userAction1.setOperObject(user3.getUserName());
-		userAction1.removeFriend();
 		
-		userAction1.setOperObject("数学");
-		userAction1.removeCircle();
+//		Object user = ActionContext.getContext().getContextMap().get("user");
+//		System.out.println(user);
+		
+//		userAction1.setOperObject(user3.getUserName());
+//		userAction1.removeFriend();
+//		
+//		userAction1.setOperObject("数学");
+//		userAction1.removeCircle();
 	}
 }

@@ -15,4 +15,5 @@
 <fullyQualifiedTypeName name="com.demo.database.data.TDemoCircle"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="com.opensymphony.xwork2.ActionContext"/>
 </qualifiedTypeNameHistroy>

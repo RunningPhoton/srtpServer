@@ -1,0 +1,40 @@
+package com.demo.tools;
+
+import java.util.List;
+import java.util.Set;
+
+import com.demo.database.data.TDemoCircle;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+/**
+ * 工具函数包
+ * @author runningphoton
+ *
+ */
+public class Tools {
+
+	/**
+	 * 将类转化为json字符串
+	 * @param temp
+	 * @return
+	 */
+	public JSONObject objectToJson(Object temp) {
+		return JSONObject.fromObject(temp);
+//		JSONObject json = JSONObject.fromObject(temp);
+//        return json.toString();
+	}
+	/**
+	 * 将Set转化为json字符串
+	 */
+	public JSONArray setToJson(Set<Object> temp) {
+		return JSONArray.fromObject(temp);
+//		JSONArray json = JSONArray.fromObject(temp);
+//		return json.toString();
+	}
+	public JSONArray listToJson(List<Object> list) {
+		return JSONArray.fromObject(list);
+		// TODO Auto-generated method stub
+	}
+}

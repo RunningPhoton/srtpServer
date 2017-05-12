@@ -1,0 +1,12 @@
+package com.demo.tools;
+
+import net.sf.json.JSONObject;
+
+public class ObjectToJson {
+
+	public String objectToJson(Object temp) {
+		JSONObject json = JSONObject.fromObject(temp);
+        System.out.println(json);
+        return json.toString();
+	}
+}

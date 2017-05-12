@@ -1,0 +1,7 @@
+package com.demo.database.data;
+
+import java.io.Serializable;
+
+public class TDemoImplCircle  implements Serializable {
+	
+}

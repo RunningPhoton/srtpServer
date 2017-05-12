@@ -1,0 +1,27 @@
+package com.demo.database.data;
+
+import java.io.Serializable;
+
+public class TDemoImplCircle  implements Serializable {
+	private String circleName;
+	private int userCounts;
+	
+	TDemoImplCircle(String circleName, int userCounts) {
+		this.circleName = circleName;
+		this.userCounts = userCounts;
+	}
+	
+	public String getCircleName() {
+		return circleName;
+	}
+	public void setCircleName(String circleName) {
+		this.circleName = circleName;
+	}
+	public int getUserCounts() {
+		return userCounts;
+	}
+	public void setUserCounts(int userCounts) {
+		this.userCounts = userCounts;
+	}
+	
+}

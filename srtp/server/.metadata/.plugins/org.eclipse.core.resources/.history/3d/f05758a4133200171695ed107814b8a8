@@ -1,0 +1,60 @@
+package com.demo.database.data;
+
+import java.io.Serializable;
+
+public class TDemoImplUser implements Serializable {
+	private String userName;
+	private String userNickname;
+	private String userGender;
+	private String userCollege;
+	private String graphName;
+
+	TDemoImplUser(String userName, String userNickname, String userGender, String userCollege, String graphName = "") {
+		this.userName = userName;
+		this.userNickname = userNickname;
+		this.userGender = userGender;
+		this.userCollege = userCollege;
+		this.graphName = graphName;
+	}
+	
+	public String getUserGender() {
+		return userGender;
+	}
+
+	public void setUserGender(String userGender) {
+		this.userGender = userGender;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserCollege() {
+		return userCollege;
+	}
+
+	public void setUserCollege(String userCollege) {
+		this.userCollege = userCollege;
+	}
+
+	public String getGraphName() {
+		return graphName;
+	}
+
+	public void setGraphName(String graphName) {
+		this.graphName = graphName;
+	}
+
+}

@@ -17,7 +17,6 @@
 		<many-to-one name="inferiorUser"
 			column="inferior_user_id" lazy="false"></many-to-one>
 		
-		
 		<property name="messageContent" type="java.lang.String">
 			<column name="message_content"></column>
 		</property>

@@ -1,36 +1,43 @@
 package com.demo.actions;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import com.demo.database.data.TDemoImplUser;
 import com.demo.database.data.TDemoMessage;
-import com.demo.database.data.TDemoTempUser;
 import com.demo.database.data.TDemoUser;
 import com.demo.database.idao.IDaoService;
 import com.demo.services.ILogService;
+import com.demo.tools.Tools;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class LogAction extends ActionSupport {
+public class LogAction extends ActionSupport implements Serializable{
 	private ILogService ilogService;
 	private TDemoUser user;
-	private InputStream inputStream;
-	private Map<String, Object> jsonResult;
-	private String result;
+	private JSONObject result;
 	
-	
-	public InputStream getInputStream() {
-		return inputStream;
+	public JSONObject getResult() {
+		return result;
 	}
 
-	public void setInputStream(InputStream inputStream) {
-		this.inputStream = inputStream;
+	public void setResult(JSONObject result) {
+		this.result = result;
 	}
 
 	public ILogService getIlogService() {
@@ -50,110 +57,61 @@ public class LogAction extends ActionSupport {
 	}
 	/**
 	 * log!login.action
+	 * 若登录成功回显的基本属性值的json串，否则回显null。
 	 * 
 	 */
 	public String login() {
 		try {
 			System.out.println("执行login代码");
-			System.out.println(user.getUserName() + " " + user.getUserPassword());
-			TDemoUser baseUser = ilogService.login(user.getUserName(), user.getUserPassword());
-			System.out.println(baseUser);
-			if(baseUser == null) {
-				inputStream = new ByteArrayInputStream("fail".getBytes("UTF-8"));
-			} else {
-				this.user = baseUser;
-				inputStream = new ByteArrayInputStream("success".getBytes("UTF-8"));
-			}
-
-			/**
-			 * 测试User登录后是否集合类自动加载
-			 */
-//			Iterator<TDemoUser> itFriend = baseUser.getUserFriendSet().iterator();
-//			while(itFriend.hasNext()) {
-//				TDemoUser temp = itFriend.next();
-//				System.out.println(temp.getUserName());
-//			}
-//			System.out.println(baseUser.getUserCircle().getCircleName());
-//			Iterator<TDemoMessage> itUserMessage = baseUser.getUserMessageSendSet().iterator();
-//			while(itUserMessage.hasNext()) {
-//				TDemoMessage ms = itUserMessage.next();
-//				System.out.println(ms.getMessageContent());
-//			}
-//			System.out.println(baseUser.getUserMessageGetSet().size());
-//			System.out.println(baseUser.getUserMessageSendSet().size());
-//			ActionContext.getContext().getSession().put("user", this.user);
-			return SUCCESS;
+			System.out.println(user.getUserName() + "  " + user.getUserPassword());
+			this.user = ilogService.login(user.getUserName(), user.getUserPassword());
+			return userToJson(this.user);
 		} catch (Exception e) {
-			System.out.println("执行login代码 catch");
 			e.printStackTrace();
 			return ERROR;
 		}
 	}
-	public String userToJson() {
-		result = null;
-		TDemoTempUser temp = new TDemoTempUser();
-    	temp.setUserName("123123");
-    	temp.setUserPassword("jjjj");
-    	JSONObject json=JSONObject.fromObject(temp);
-        System.out.println(json);
-        result = json.toString();
-        response.getWriter().print(result);
-        System.out.println("result " + result);
+	/**
+	 * 把user类转化为json字符串
+	 * @param t1
+	 * @return
+	 */
+	public String userToJson(TDemoUser t1) {
+		if(t1 == null) {
+			return SUCCESS;
+		}
+		TDemoImplUser temp = new TDemoImplUser(t1.getUserName(), t1.getUserNickname(), 
+				t1.getUserGender(), t1.getUserCollege(), t1.getUserDescribe(), t1.getGraphName());
+		Tools tool = new Tools();
+		this.result = tool.objectToJson(temp);
         return SUCCESS;
 	}
-//	public String userToJson(){
-//		this.jsonResult = new HashMap<String, Object>();
-//        String status = null;
-//        try {
-//        	
-//        	System.out.println(this.user.getUserName() + " " + this.user.getUserPassword());
-//        	this.user = ilogService.login(this.user.getUserName(), this.user.getUserPassword());
-//        	if(this.user != null) {
-//        		status = "1";
-//            	
-//        	} else {
-//        		status = "0";
-//        	}
-//        	TDemoTempUser temp = new TDemoTempUser();
-//        	temp.setUserName("123123");
-//        	temp.setUserPassword("jjjj");
-//    		System.out.println("debugUP1111");
-//    		JSONObject json=JSONObject.fromObject(temp);
-//    		System.out.println("debugUP");
-//            System.out.println(json);
-//    		System.out.println("debugDOWN");
-//            result = json.toString();
-//            System.out.println("result " + result);
-//            return SUCCESS;
-//        	
-//        } catch (Exception e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        return ERROR;
-//    }
+	/**
+	 * 注销
+	 * @return
+	 */
 	public String logout() {
 		System.out.println("执行logout代码");
 		try {
-			if(ilogService.logout(user)) {
-				inputStream = new ByteArrayInputStream("success".getBytes("UTF-8"));
-			} else {
-				inputStream = new ByteArrayInputStream("fail".getBytes("UTF-8"));
-			}
+			TDemoUser baseUser = ilogService.login(user.getUserName(), user.getUserPassword());
+			ilogService.logout(baseUser);
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
 		}
 	}
+	/**
+	 * 注册，成功回显用户属性，否则回显
+	 * @return
+	 */
 	public String register() {
 		try {
 			System.out.println("执行register代码");
-			if(ilogService.register(user)) {
-				inputStream = new ByteArrayInputStream("success".getBytes("UTF-8"));
-			} else {
-				inputStream = new ByteArrayInputStream("fail".getBytes("UTF-8"));
-			}
+			if(ilogService.register(this.user))
+				return this.userToJson(this.user);
+			else 
+				this.result = null;
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();

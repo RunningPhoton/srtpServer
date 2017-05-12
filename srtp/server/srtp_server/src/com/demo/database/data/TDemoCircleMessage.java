@@ -2,6 +2,7 @@ package com.demo.database.data;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -18,6 +19,9 @@ public class TDemoCircleMessage implements Serializable {
 	private TDemoUser user;
 	private String circleMessageContent;
 	private Timestamp opertime;
+	
+	
+
 	public Integer getCircleMessageId() {
 		return circleMessageId;
 	}
@@ -42,13 +46,15 @@ public class TDemoCircleMessage implements Serializable {
 	public void setCircleMessageContent(String circleMessageContent) {
 		this.circleMessageContent = circleMessageContent;
 	}
+	
 	public Timestamp getOpertime() {
 		return opertime;
 	}
 	public void setOpertime(Timestamp opertime) {
 		this.opertime = opertime;
 	}
-	
-
+	public TDemoImplMessage toImplMessage() {
+		return new TDemoImplMessage(this.user.getUserName(), this.circleMessageContent, this.opertime);
+	}
 	
 }

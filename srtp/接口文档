@@ -1,0 +1,252 @@
+登录操作
+url:log!login.action
+需要字段
+user.userName
+user.userPassword
+返回用户自身信息：
+{
+  "graphName": "",
+  "userCollege": "CQU",
+  "userDescribe": "",
+  "userGender": "男",
+  "userName": "user1",
+  "userNickname": "RunningPhoton"
+}
+
+
+
+注册操作
+url:log!register.action
+需要字段
+user.userName
+user.userPassword
+user.userCollege
+user.userGender
+user.userNickname
+返回用户自身信息：
+{
+  "graphName": "",
+  "userCollege": "",
+  "userDescribe": "",
+  "userGender": "",
+  "userName": "user4",
+  "userNickname": ""
+}
+
+
+
+注销操作
+url:log!logout.action
+需要字段
+无
+返回：
+无
+
+
+
+列出关注的人
+Url:user!listWhoIAdd.action
+需要字段
+User.userName
+返回关注的人：
+[
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user2",
+    "userNickname": "Tom"
+  },
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user3",
+    "userNickname": "Bob"
+  }
+]
+
+
+
+列出被哪些人关注
+Url:user!listWhoAddMe.action
+需要字段
+user.userName
+返回被哪些人关注：
+[
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user2",
+    "userNickname": "Tom"
+  },
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user3",
+    "userNickname": "Bob"
+  }
+]
+
+
+查看圈子用户信息
+Url:user!listCircleUser.action
+需要字段
+operObject（圈子名称）
+返回圈子里的用户信息：
+[
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user3",
+    "userNickname": "Bob"
+  },
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user1",
+    "userNickname": "RunningPhoton"
+  }
+]
+
+
+更新自己用户信息
+Url:user!update.action
+需要字段
+user.userName
+除了user.userName以外的字段都可以更新
+例如user.userCollege
+返回用户自身信息：
+{
+  "graphName": "urfL'asd",
+  "userCollege": "CQU",
+  "userDescribe": "我是个智障",
+  "userGender": "男",
+  "userName": "user1",
+  "userNickname": "hahaha"
+}
+
+
+
+查看用户信息
+Url:user!listUser.action
+需要字段
+operObject
+返回被查看的用户信息:
+{
+  "graphName": "",
+  "userCollege": "CQU",
+  "userDescribe": "",
+  "userGender": "男",
+  "userName": "user3",
+  "userNickname": "Bob"
+}
+
+
+
+添加关注
+Url:user!addFriend.action
+需要字段
+user.userName
+operObject（被添加的用户名）
+返回添加后的关注列表:
+[
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user3",
+    "userNickname": "Bob"
+  },
+  {
+    "graphName": "urfL'asd",
+    "userCollege": "CQU",
+    "userDescribe": "我是个智障",
+    "userGender": "男",
+    "userName": "user1",
+    "userNickname": "hahaha"
+  }
+]
+
+删除关注
+Url:user!removeFriend.action
+需要的字段
+user.userName
+operObject（被删除的用户名）
+返回删除后的关注列表:
+[
+  {
+    "graphName": "",
+    "userCollege": "CQU",
+    "userDescribe": "",
+    "userGender": "男",
+    "userName": "user3",
+    "userNickname": "Bob"
+  }
+]
+
+
+
+创建圈子
+Url:user!createCircle.action
+需要的字段名
+user.userName
+operObject（圈子名）
+operContent（圈子描述）
+返回：
+null（已有该圈子）
+
+Or
+
+{
+  "circleName": "外语",
+  "opertime": 1494552755000,
+  "userCounts": 1
+}
+
+设置圈子（加入群聊）
+Url:user!setCircle.action
+需要字段名
+user.userName
+operObject（圈子名）
+返回:
+{
+  "circleName": "外语",
+  "opertime": 1494552755000,
+  "userCounts": 1
+}
+
+移除圈子（删除群聊）
+Url:user!removeCircle.action
+需要字段名
+user.userName
+operObject（圈子名）
+返回所有圈子:
+[
+  {
+    "circleName": "数学",
+    "opertime": 1494551415000,
+    "userCounts": 2
+  },
+  {
+    "circleName": "语文",
+    "opertime": 1494551917000,
+    "userCounts": 0
+  },
+  {
+    "circleName": "外语",
+    "opertime": 1494552755000,
+    "userCounts": 0
+  }
+]

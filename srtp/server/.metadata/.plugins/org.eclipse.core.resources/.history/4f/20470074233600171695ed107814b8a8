@@ -1,0 +1,57 @@
+package com.demo.services;
+
+import java.util.Set;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.demo.database.data.TDemoUser;
+
+public interface IUserForUserService {
+	
+	/**
+	 * 通过用户名查找到User，找不到返回空（客户端存在的user一定能找到）
+	 */
+	public TDemoUser findByUserName(String userName);
+	
+	/**
+	 * 更新用户用户信息
+	 */
+	public boolean update(TDemoUser user);
+	
+	/**
+	 * 添加关注，需要客户端自检测是否已经是朋友
+	 * @param user
+	 * @throws Exception
+	 */
+	public void addFriend(TDemoUser user, String userName) throws Exception;
+	
+	/**
+	 * 删除关注，需要客户端自检
+	 * @param user
+	 * @throws Exception
+	 */
+	public void removeFriend(TDemoUser user, String userName) throws Exception;
+	
+	/**
+	 * 发送用户信息
+	 * @param message
+	 * @throws Exception
+	 */
+	public void sendUserMessage(TDemoUser user, String messageContent, String userName) throws Exception;
+	
+	/**
+	 * 将TDemoUser转化为json字符串
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject listUser(TDemoUser obj) throws Exception;
+	
+	/**
+	 * 将TDemoUser的集合转化为json字符串
+	 * @param objSet
+	 * @return
+	 */
+	public JSONArray listUserSets(Set<TDemoUser> objSet) throws Exception;
+}

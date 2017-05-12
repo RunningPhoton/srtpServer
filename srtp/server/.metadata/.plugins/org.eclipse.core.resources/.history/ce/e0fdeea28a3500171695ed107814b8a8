@@ -1,0 +1,42 @@
+package com.demo.database.data;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+public class TDemoImplMessage implements Serializable {
+
+	private String userName;
+	private String content;
+	private Time opertime;
+	
+	public TDemoImplMessage(String userName, String content, Timestamp opertime) {
+		this.userName = userName;
+		this.content = content;
+		this.opertime = opertime;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Timestamp getOpertime() {
+		return opertime;
+	}
+
+	public void setOpertime(Timestamp opertime) {
+		this.opertime = opertime;
+	}
+	
+}

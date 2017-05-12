@@ -1,0 +1,39 @@
+package com.demo.database.data;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.tomcat.jni.Time;
+
+public class TDemoImplCircle  implements Serializable {
+	private String circleName;
+	private int userCounts;
+	private Date opertime;
+	public TDemoImplCircle(String circleName, int userCounts, Date opertime) {
+		this.circleName = circleName;
+		this.userCounts = userCounts;
+		this.opertime = opertime;
+	}
+	
+	public String getCircleName() {
+		return circleName;
+	}
+	public void setCircleName(String circleName) {
+		this.circleName = circleName;
+	}
+	public int getUserCounts() {
+		return userCounts;
+	}
+	public void setUserCounts(int userCounts) {
+		this.userCounts = userCounts;
+	}
+
+	public Date getOpertime() {
+		return opertime;
+	}
+
+	public void setOpertime(Date opertime) {
+		this.opertime = opertime;
+	}
+	
+}

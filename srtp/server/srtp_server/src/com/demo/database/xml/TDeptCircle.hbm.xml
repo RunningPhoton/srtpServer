@@ -14,6 +14,13 @@
 			<column name="circle_name"></column>
 		</property>
 		
+		<property name="circleDescribe" type="java.lang.String">
+			<column name="circle_describe"></column>
+		</property>
+		
+		<property name="circleMarks" type="java.lang.Integer">
+			<column name="circle_marks"></column>
+		</property>
 		
 		<set name="userSet" table="t_demo_user" inverse="false" lazy="false">
 			<key column="circle_id"></key>
@@ -27,6 +34,10 @@
 		
 		<property name="opertime" type="java.sql.Timestamp">
 			<column name="opertime"></column>
+		</property>
+		
+		<property name="graphName" type="java.lang.String">
+			<column name="graph_name"></column>
 		</property>
 	</class>
 </hibernate-mapping>

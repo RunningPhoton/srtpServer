@@ -1,9 +1,19 @@
 package com.demo.services;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import com.demo.database.data.TDemoCircle;
 import com.demo.database.data.TDemoCircleMessage;
+import com.demo.database.data.TDemoImplMessage;
+import com.demo.database.data.TDemoImplUser;
 import com.demo.database.data.TDemoMessage;
 import com.demo.database.data.TDemoUser;
+import com.demo.tools.Tools;
 
 public interface IUserService {
 
@@ -72,5 +82,41 @@ public interface IUserService {
 	 * @throws Exception
 	 */
 	public void sendCircleMessage(TDemoUser user, String circleMessageContent) throws Exception;
+	
+	/**
+	 * 通过圈子名和圈子描述来创建圈子
+	 * @param circleName
+	 * @param circleDescribe
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean createCircle(String circleName, String circleDescribe) throws Exception;
 
+	/**
+	 * 展示所有circle
+	 */
+	public JSONArray listAllCircle() throws Exception;
+	
+	/**
+	 * 展示用户的圈子
+	 */
+	public JSONObject listMyCircle(TDemoUser user) throws Exception;
+	/**
+	 * 将TDemoUser转化为json字符串
+	 * @param obj
+	 * @return
+	 * @throws Exception
+	 */
+	public JSONObject listUser(TDemoUser obj) throws Exception;
+	/**
+	 * 将TDemoUser的集合转化为json字符串
+	 * @param objSet
+	 * @return
+	 */
+	public JSONArray listUserSets(Set<TDemoUser> objSet) throws Exception;
+	/**
+	 * 将消息的集合转化为json字符串
+	 * 
+	 */
+	public JSONArray listMessageSets(Set<TDemoImplMessage> objSet) throws Exception;
 }

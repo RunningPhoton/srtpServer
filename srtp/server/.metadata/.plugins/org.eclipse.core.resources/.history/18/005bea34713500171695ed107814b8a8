@@ -1,0 +1,29 @@
+package com.demo.tools;
+
+import java.util.Set;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+/**
+ * 工具函数包
+ * @author runningphoton
+ *
+ */
+public class Tools {
+
+	/**
+	 * 将类转化为json字符串
+	 * @param temp
+	 * @return
+	 */
+	public JSONObject objectToJson(Object temp) {
+		return JSONObject.fromObject(temp);
+	}
+	/**
+	 * 将Set转化为json字符串
+	 */
+	public String setToJson(Set<Object> temp) {
+		return JSONArray.fromObject(temp);
+	}
+}

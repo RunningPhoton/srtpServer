@@ -1,16 +1,27 @@
 package com.demo.services.impl;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import com.demo.database.data.TDemoCircle;
 import com.demo.database.data.TDemoCircleMessage;
+import com.demo.database.data.TDemoImplCircle;
+import com.demo.database.data.TDemoImplMessage;
+import com.demo.database.data.TDemoImplUser;
 import com.demo.database.data.TDemoMessage;
 import com.demo.database.data.TDemoUser;
 import com.demo.database.idao.IDaoService;
+import com.demo.database.idao.impl.DaoServiceImpl;
 import com.demo.services.IUserService;
+import com.demo.tools.Tools;
 
 
 /**
@@ -48,7 +59,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	/**
-	 * 通过ciecleName来查找circle，找不到就创建一个
+	 * 通过ciecleName来查找circle
 	 */
 	@Override
 	public TDemoCircle findByCircleName(String circleName) {
@@ -57,12 +68,7 @@ public class UserServiceImpl implements IUserService {
 			List<TDemoCircle> list = (List<TDemoCircle>) idaoService.query(hql);
 //			System.out.println(list);
 			if(list == null || list.size() == 0) {
-				TDemoCircle circle = new TDemoCircle();
-				circle.setCircleName(circleName);
-				circle.setOpertime(new Timestamp(System.currentTimeMillis()));
-				idaoService.save(circle);
-				List<TDemoCircle> list2 = (List<TDemoCircle>) idaoService.query(hql);
-				return list2.get(0);
+				return null;
 			}
 			return list.get(0);
 		} catch (Exception e) {
@@ -85,16 +91,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void addFriend(TDemoUser user, String userName) throws Exception {
 		TDemoUser user1 = this.findByUserName(userName);
-		/**
-		 * test
-		 */
-		System.out.println(user.getUserName() + " add friend " + user1.getUserName());
-		System.out.println(user.getUserFriendSet().size() + " * " + user1.getUserFriendSet().size());
 		user.getUserFriendSet().add(user1);
 		user1.getUserBeenFriendSet().add(user);
-		System.out.println(user.getUserFriendSet().size() + " * " + user1.getUserFriendSet().size());
 		idaoService.update(user);
-		System.out.println(user.getUserName() + " true add friend " + user1.getUserName());
 	}
 
 	/**
@@ -119,7 +118,29 @@ public class UserServiceImpl implements IUserService {
 			idaoService.update(user);
 		}
 	}
-
+	
+	/**
+	 * 创建圈子
+	 */
+	@Override
+	public boolean createCircle(String circleName, String circleDescribe)
+			throws Exception {
+		System.out.println("执行createCircle");
+		TDemoCircle circle = this.findByCircleName(circleName);
+		System.out.println("circle = " + circle);
+		if(circle == null) {
+			circle = new TDemoCircle();
+			circle.setCircleMarks(1);
+			circle.setCircleName(circleName);
+			circle.setOpertime(new Timestamp(System.currentTimeMillis()));
+			circle.setCircleDescribe(circleDescribe);
+			idaoService.save(circle);
+			return true;
+		}
+		
+		return false;
+	}
+	
 	/**
 	 * 设置圈子
 	 */
@@ -129,7 +150,7 @@ public class UserServiceImpl implements IUserService {
 		
 		System.out.println(circle.getCircleName());
 		
-		circle.getUserSet().add(user);
+//		circle.getUserSet().add(user);
 		user.setUserCircle(circle);
 		System.out.println("debug1");
 //		idaoService.update(circle);
@@ -145,13 +166,13 @@ public class UserServiceImpl implements IUserService {
 	public void removeCircle(TDemoUser user, String circleName) throws Exception {
 		TDemoCircle circle = this.findByCircleName(circleName);
 //		circle.getUserSet().remove(user);
-		Iterator iter = circle.getUserSet().iterator();
-		while(iter.hasNext()) {
-			if(iter.next().equals(user)) {
-				iter.remove();
-			}
-		}
-		idaoService.update(circle);
+//		Iterator iter = circle.getUserSet().iterator();
+//		while(iter.hasNext()) {
+//			if(iter.next().equals(user)) {
+//				iter.remove();
+//			}
+//		}
+//		idaoService.update(circle);
 		user.setUserCircle(null);
 		idaoService.update(user);
 	}
@@ -175,6 +196,7 @@ public class UserServiceImpl implements IUserService {
 		idaoService.update(user1);
 	}
 
+	
 	/**
 	 * 向圈子发送消息
 	 */
@@ -182,7 +204,6 @@ public class UserServiceImpl implements IUserService {
 	public void sendCircleMessage(TDemoUser user, String circleMessageContent) throws Exception {
 		
 
-		System.out.println("debug1");
 		System.out.println(user.getUserName());
 		TDemoCircle circle = this.findByCircleName(user.getUserCircle().getCircleName());
 		TDemoCircleMessage circleMessage = new TDemoCircleMessage();
@@ -190,17 +211,12 @@ public class UserServiceImpl implements IUserService {
 		circleMessage.setCircleMessageContent(circleMessageContent);
 		circleMessage.setOpertime(new Timestamp(System.currentTimeMillis()));
 		circleMessage.setUser(user);
-		System.out.println("debug11");
 		idaoService.save(circleMessage);
 		
-		System.out.println("debug111");
 		Set<TDemoCircleMessage> se = circle.getMessageSet();
-		System.out.println("debug1111");
 		se.add(circleMessage);
 
-		System.out.println("debug2");
 		idaoService.update(circle);
-		System.out.println("debug3");
 	}
 
 	/**
@@ -217,4 +233,83 @@ public class UserServiceImpl implements IUserService {
 			return false;
 		}
 	}
+
+	@Override
+	public JSONArray listUserSets(Set<TDemoUser> objSet) throws Exception {
+		if(objSet == null) {
+			return null;
+		}
+		Tools tool = new Tools();
+		Set<Object> obj = new HashSet<Object>();
+		Iterator iter = objSet.iterator();
+		while(iter.hasNext()) {
+			TDemoUser cur = (TDemoUser) iter.next();
+			obj.add(new TDemoImplUser(cur.getUserName(), cur.getUserNickname(), 
+					cur.getUserGender(), cur.getUserCollege(), cur.getUserDescribe(), cur.getGraphName()));
+			
+		}
+		return tool.setToJson(obj);
+	}
+
+	@Override
+	public JSONArray listMessageSets(Set<TDemoImplMessage> objSet) {
+		if(objSet == null) {
+			return null;
+		}
+		Tools tool = new Tools();
+		Iterator iter = objSet.iterator();
+		Set<Object> obj = new HashSet<Object> ();
+		
+		while(iter.hasNext()) {
+			TDemoImplMessage cur = (TDemoImplMessage) iter.next();
+			obj.add(cur);
+		}
+		return tool.setToJson(obj);
+	}
+
+	/**
+	 * 展示某用户信息
+	 */
+	@Override
+	public JSONObject listUser(TDemoUser obj) throws Exception {
+		if(obj == null)
+			return null;
+		Tools tool = new Tools();
+		TDemoImplUser cur = new TDemoImplUser(obj.getUserName(), obj.getUserNickname(), 
+				obj.getUserGender(), obj.getUserCollege(), obj.getUserDescribe(), obj.getGraphName());
+		cur.print();
+		return tool.objectToJson(cur);
+	}
+
+	/**
+	 * 展示所有circle信息
+	 */
+	@Override
+	public JSONArray listAllCircle() throws Exception {
+		String hql = "from TDemoCircle";
+		List<TDemoCircle> list = (List<TDemoCircle>) idaoService.query(hql);
+		List<Object> temp = new ArrayList<Object>();
+		for(int i = 0; i < list.size(); i++) {
+			TDemoCircle now = list.get(i);
+			temp.add(new TDemoImplCircle(now.getCircleName(), 
+					now.getUserSet().size(), now.getOpertime(), now.getCircleMarks(), now.getGraphName()));
+		}
+		Tools tool = new Tools();
+		return tool.listToJson(temp);
+	}
+
+	/**
+	 * 展示用户circle信息，null表示未添加任何circle
+	 */
+	@Override
+	public JSONObject listMyCircle(TDemoUser user) throws Exception {
+		if(user == null)
+			return null;
+		TDemoCircle circle = user.getUserCircle();
+		TDemoImplCircle cur = new TDemoImplCircle(circle.getCircleName(), 
+				circle.getUserSet().size(), circle.getOpertime(), circle.getCircleMarks(), circle.getGraphName());
+		Tools tool = new Tools();
+		return tool.objectToJson(cur);
+	}
+
 }

@@ -15,7 +15,6 @@
 			column="user_id" lazy="false"></many-to-one>
 		<many-to-one name="circle"
 			column="circle_id" lazy="false"></many-to-one>
-		
 		<property name="circleMessageContent" type="java.lang.String">
 			<column name="circle_message_content"></column>
 		</property>

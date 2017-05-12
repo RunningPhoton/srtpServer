@@ -2,6 +2,7 @@ package com.demo.database.data;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,8 @@ public class TDemoUser implements Serializable {
 	private String userName;
 	private String userPassword;
 	private String userCollege;
+	private String userDescribe;
+
 	private String graphName;
 	private Set<TDemoUser> userFriendSet;
 	private Set<TDemoUser> userBeenFriendSet;
@@ -32,6 +35,14 @@ public class TDemoUser implements Serializable {
 	private Integer userAuthority;
 	private Timestamp opertime;
 
+	public String getUserDescribe() {
+		return userDescribe;
+	}
+
+	public void setUserDescribe(String userDescribe) {
+		this.userDescribe = userDescribe;
+	}
+	
 	public boolean equals(TDemoUser temp) {
 		return this.userName.equals(temp.userName);
 	}
@@ -144,8 +155,8 @@ public class TDemoUser implements Serializable {
 		return opertime;
 	}
 
-	public void setOpertime(Timestamp timestamp) {
-		this.opertime = timestamp;
+	public void setOpertime(Timestamp opertime) {
+		this.opertime = opertime;
 	}
 
 	public Set<TDemoUser> getUserBeenFriendSet() {

@@ -90,7 +90,7 @@ public interface IUserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public boolean createCircle(String userId, String circleName, String circleDescribe) throws Exception;
+	public boolean createCircle(String circleName, String circleDescribe) throws Exception;
 
 	/**
 	 * 展示所有circle

@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [20/May/2017:00:16:09 +0800] "POST /srtp_server/user!addFriend.action HTTP/1.1" 200 570
+0:0:0:0:0:0:0:1 - - [20/May/2017:00:17:10 +0800] "POST /srtp_server/user!removeFriend.action HTTP/1.1" 200 296
+0:0:0:0:0:0:0:1 - - [20/May/2017:00:18:25 +0800] "POST /srtp_server/user!createCircle.action HTTP/1.1" 200 110
+0:0:0:0:0:0:0:1 - - [20/May/2017:00:19:30 +0800] "POST /srtp_server/user!setCircle.action HTTP/1.1" 200 110
+0:0:0:0:0:0:0:1 - - [20/May/2017:00:19:53 +0800] "POST /srtp_server/user!removeCircle.action HTTP/1.1" 200 328

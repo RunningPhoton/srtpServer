@@ -226,8 +226,7 @@ public class UserAction extends ActionSupport {
 	 */
 	public String createCircle() {
 		try {
-			this.user = iuserService.findByUserName(this.user.getUserName());
-			if(iuserService.createCircle(this.user.getUserId().toString(), this.operObject, this.operContent)) {
+			if(iuserService.createCircle(this.operObject, this.operContent)) {
 				this.setCircle();
 				this.one = iuserService.listMyCircle(this.user);
 			}

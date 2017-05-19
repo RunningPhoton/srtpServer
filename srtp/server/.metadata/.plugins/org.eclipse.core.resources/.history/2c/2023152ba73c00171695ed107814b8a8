@@ -34,8 +34,6 @@ public class Tools {
 		String[] groupQuitUserId = {userId};
 		try {
 			CodeSuccessResult groupQuitResult = rongCloud.group.quit(groupQuitUserId, groupId);
-			System.out.println("融云移除成员完成");
-			System.out.println(groupQuitResult.getCode());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,8 +48,6 @@ public class Tools {
 		CodeSuccessResult groupJoinResult;
 		try {
 			groupJoinResult = rongCloud.group.join(groupJoinUserId, chatRoomId, chatRoomName);
-			System.out.println("链接融云添加成员到群组完成");
-			System.out.println(groupJoinResult.getCode());
 			return groupJoinResult.getCode().equals(200);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -62,14 +58,11 @@ public class Tools {
 	/**
 	 * 创建群组
 	 */
-	public Boolean createChatRoom(String userId, String roomId, String roomName) {
+	public Boolean createChatRoom(String roomId, String roomName) {
 		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
-		String[] groupCreateUserId = {userId};
+		String[] groupCreateUserId = {};
 		try {
 			CodeSuccessResult groupCreateResult = rongCloud.group.create(groupCreateUserId, roomId, roomName);
-
-			System.out.println("链接融云创建群组完成");
-			System.out.println(groupCreateResult.getCode());
 			return groupCreateResult.getCode().equals(200);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block

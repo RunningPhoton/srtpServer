@@ -34,8 +34,6 @@ public class Tools {
 		String[] groupQuitUserId = {userId};
 		try {
 			CodeSuccessResult groupQuitResult = rongCloud.group.quit(groupQuitUserId, groupId);
-			System.out.println("融云移除成员完成");
-			System.out.println(groupQuitResult.getCode());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

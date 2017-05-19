@@ -5,12 +5,14 @@ user.userName
 user.userPassword
 返回用户自身信息：
 {
-  "graphName": "",
+  "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
   "userCollege": "CQU",
   "userDescribe": "",
   "userGender": "男",
-  "userName": "user1",
-  "userNickname": "RunningPhoton"
+  "userId": 4,
+  "userName": "user4",
+  "userNickname": "hahaha",
+  "userToken": "C1epofFMs8rGN/llEE+QIW2naubcvKsn8sW5eWSN8Q5XCZrzcRyDkncCbEf28LcSPHin9K1wVyw="
 }
 
 
@@ -25,12 +27,14 @@ user.userGender
 user.userNickname
 返回用户自身信息：
 {
-  "graphName": "",
-  "userCollege": "",
+  "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
+  "userCollege": "CQU",
   "userDescribe": "",
-  "userGender": "",
+  "userGender": "男",
+  "userId": 4,
   "userName": "user4",
-  "userNickname": ""
+  "userNickname": "hahaha",
+  "userToken": ""
 }
 
 
@@ -51,20 +55,14 @@ User.userName
 返回关注的人：
 [
   {
-    "graphName": "",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
     "userDescribe": "",
     "userGender": "男",
-    "userName": "user2",
-    "userNickname": "Tom"
-  },
-  {
-    "graphName": "",
-    "userCollege": "CQU",
-    "userDescribe": "",
-    "userGender": "男",
-    "userName": "user3",
-    "userNickname": "Bob"
+    "userId": 1,
+    "userName": "user1",
+    "userNickname": "RunningPhoton",
+    "userToken": "ApkVoiNd2+9wc5/n5hANsHXRhOKVPeAETYDX/ofhZnloyAf0yl8zvDUmW5n863J0ZcPIQFMLOxkjNpZGhWQl/w=="
   }
 ]
 
@@ -77,20 +75,14 @@ user.userName
 返回被哪些人关注：
 [
   {
-    "graphName": "",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
     "userDescribe": "",
     "userGender": "男",
-    "userName": "user2",
-    "userNickname": "Tom"
-  },
-  {
-    "graphName": "",
-    "userCollege": "CQU",
-    "userDescribe": "",
-    "userGender": "男",
-    "userName": "user3",
-    "userNickname": "Bob"
+    "userId": 1,
+    "userName": "user1",
+    "userNickname": "RunningPhoton",
+    "userToken": "ApkVoiNd2+9wc5/n5hANsHXRhOKVPeAETYDX/ofhZnloyAf0yl8zvDUmW5n863J0ZcPIQFMLOxkjNpZGhWQl/w=="
   }
 ]
 
@@ -102,23 +94,26 @@ operObject（圈子名称）
 返回圈子里的用户信息：
 [
   {
-    "graphName": "",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
     "userDescribe": "",
     "userGender": "男",
+    "userId": 3,
     "userName": "user3",
-    "userNickname": "Bob"
+    "userNickname": "Bob",
+    "userToken": "Aqp/EnNIPrhphFtp6nHevxSfcR/YXaf1HnmDDfugxWgwPZDTIkyu490p3j1EL8EsF5V9FqKzlrtvGjZcx+P6ZQ=="
   },
   {
-    "graphName": "",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
     "userDescribe": "",
     "userGender": "男",
+    "userId": 1,
     "userName": "user1",
-    "userNickname": "RunningPhoton"
+    "userNickname": "RunningPhoton",
+    "userToken": "ApkVoiNd2+9wc5/n5hANsHXRhOKVPeAETYDX/ofhZnloyAf0yl8zvDUmW5n863J0ZcPIQFMLOxkjNpZGhWQl/w=="
   }
 ]
-
 
 更新自己用户信息
 Url:user!update.action
@@ -128,14 +123,15 @@ user.userName
 例如user.userCollege
 返回用户自身信息：
 {
-  "graphName": "urfL'asd",
+  "graphName": "",
   "userCollege": "CQU",
-  "userDescribe": "我是个智障",
+  "userDescribe": "我是个神",
   "userGender": "男",
-  "userName": "user1",
-  "userNickname": "hahaha"
+  "userId": 2,
+  "userName": "user2",
+  "userNickname": "hahaha",
+  "userToken": "Cmu+3clfnZLGN/llEE+QIW2naubcvKsn8sW5eWSN8Q5XCZrzcRyDkrFcmWKQu7go7Nf51eoYDks="
 }
-
 
 
 查看用户信息
@@ -162,20 +158,24 @@ operObject（被添加的用户名）
 返回添加后的关注列表:
 [
   {
-    "graphName": "",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
     "userDescribe": "",
     "userGender": "男",
-    "userName": "user3",
-    "userNickname": "Bob"
+    "userId": 4,
+    "userName": "user4",
+    "userNickname": "hahaha",
+    "userToken": "C1epofFMs8rGN/llEE+QIW2naubcvKsn8sW5eWSN8Q5XCZrzcRyDkncCbEf28LcSPHin9K1wVyw="
   },
   {
-    "graphName": "urfL'asd",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
-    "userDescribe": "我是个智障",
+    "userDescribe": "",
     "userGender": "男",
+    "userId": 1,
     "userName": "user1",
-    "userNickname": "hahaha"
+    "userNickname": "RunningPhoton",
+    "userToken": "ApkVoiNd2+9wc5/n5hANsHXRhOKVPeAETYDX/ofhZnloyAf0yl8zvDUmW5n863J0ZcPIQFMLOxkjNpZGhWQl/w=="
   }
 ]
 
@@ -187,12 +187,14 @@ operObject（被删除的用户名）
 返回删除后的关注列表:
 [
   {
-    "graphName": "",
+    "graphName": "http://localhost:8080/srtp_server/upload/head.jpg",
     "userCollege": "CQU",
     "userDescribe": "",
     "userGender": "男",
-    "userName": "user3",
-    "userNickname": "Bob"
+    "userId": 1,
+    "userName": "user1",
+    "userNickname": "RunningPhoton",
+    "userToken": "ApkVoiNd2+9wc5/n5hANsHXRhOKVPeAETYDX/ofhZnloyAf0yl8zvDUmW5n863J0ZcPIQFMLOxkjNpZGhWQl/w=="
   }
 ]
 
@@ -210,8 +212,11 @@ null（已有该圈子）
 Or
 
 {
-  "circleName": "外语",
-  "opertime": 1494552755000,
+  "circleId": 7,
+  "circleMarks": 1,
+  "circleName": "方术史",
+  "graphName": "",
+  "opertime": 1495210705000,
   "userCounts": 1
 }
 
@@ -222,9 +227,12 @@ user.userName
 operObject（圈子名）
 返回:
 {
-  "circleName": "外语",
-  "opertime": 1494552755000,
-  "userCounts": 1
+  "circleId": 7,
+  "circleMarks": 1,
+  "circleName": "方术史",
+  "graphName": "",
+  "opertime": 1495210705000,
+  "userCounts": 2
 }
 
 移除圈子（删除群聊）
@@ -235,18 +243,27 @@ operObject（圈子名）
 返回所有圈子:
 [
   {
+    "circleId": 1,
+    "circleMarks": 1,
     "circleName": "数学",
-    "opertime": 1494551415000,
-    "userCounts": 2
+    "graphName": "",
+    "opertime": 1495207102000,
+    "userCounts": 1
   },
   {
-    "circleName": "语文",
-    "opertime": 1494551917000,
-    "userCounts": 0
-  },
-  {
+    "circleId": 6,
+    "circleMarks": 1,
     "circleName": "外语",
-    "opertime": 1494552755000,
+    "graphName": "",
+    "opertime": 1495208075000,
     "userCounts": 0
+  },
+  {
+    "circleId": 7,
+    "circleMarks": 1,
+    "circleName": "方术史",
+    "graphName": "",
+    "opertime": 1495210705000,
+    "userCounts": 1
   }
 ]

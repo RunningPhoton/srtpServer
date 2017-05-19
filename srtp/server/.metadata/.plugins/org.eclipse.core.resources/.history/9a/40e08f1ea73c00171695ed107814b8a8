@@ -123,7 +123,7 @@ public class UserServiceImpl implements IUserService {
 	 * 创建圈子
 	 */
 	@Override
-	public boolean createCircle(String userId, String circleName, String circleDescribe)
+	public boolean createCircle(String circleName, String circleDescribe)
 			throws Exception {
 		System.out.println("执行createCircle");
 		TDemoCircle circle = this.findByCircleName(circleName);
@@ -138,7 +138,8 @@ public class UserServiceImpl implements IUserService {
 			System.out.println("执行circle创建完成");
 			circle = this.findByCircleName(circle.getCircleName());
 			Tools tool = new Tools();
-			return tool.createChatRoom(userId, circle.getCircleId().toString(), circle.getCircleName());
+			return tool.createChatRoom(circle.getCircleId().toString(), circle.getCircleName());
+			System.out.println("链接融云完成");
 		}
 		
 		return false;
@@ -155,16 +156,10 @@ public class UserServiceImpl implements IUserService {
 //		circle.getUserSet().add(user);
 		user.setUserCircle(circle);
 //		idaoService.update(circle);
-		System.out.println("执行setCircle");
 		idaoService.update(user);
-
-		System.out.println("执行setCircle完成");
 		Tools tool = new Tools();
 		if(tool.addToChatRoom(user.getUserId().toString(), circle.getCircleId().toString(), circle.getCircleName())) {
 			System.out.println("success add user to circle");
-		}
-		else {
-			System.out.println("fail add user to circle");
 		}
 	}
 

@@ -27,8 +27,8 @@ public class UserAction extends ActionSupport {
 	private String operObject;
 	private String operContent;
 	private IUserService iuserService;
-	private JSONObject one;
 	private JSONArray many;
+	private JSONObject one;
 	
 	public JSONObject getOne() {
 		return one;

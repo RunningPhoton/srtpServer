@@ -35,5 +35,9 @@
 		<property name="opertime" type="java.sql.Timestamp">
 			<column name="opertime"></column>
 		</property>
+		
+		<property name="graphName" type="java.lang.String">
+			<column name="graph_name"></column>
+		</property>
 	</class>
 </hibernate-mapping>

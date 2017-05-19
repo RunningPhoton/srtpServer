@@ -7,24 +7,31 @@ import java.util.Date;
 import org.apache.tomcat.jni.Time;
 
 public class TDemoImplCircle  implements Serializable {
+	private int circleId;
 	private String circleName;
 	private int userCounts;
 	private long opertime;
 	private int circleMarks;
 	private String graphName;
-	public TDemoImplCircle(String circleName, int userCounts, Date opertime) {
-		this.circleName = circleName;
-		this.userCounts = userCounts;
-		this.opertime = opertime.getTime();
-	}
 	
-	public TDemoImplCircle(String circleName, int userCounts, Date opertime,
+	public TDemoImplCircle(int circleId, String circleName, int userCounts, Date opertime,
 			Integer circleMarks, String graphName) {
+		this.circleId = circleId;
 		this.circleName = circleName;
 		this.userCounts = userCounts;
 		this.opertime = opertime.getTime();
 		this.circleMarks = circleMarks;
 		this.graphName = graphName;
+	}
+
+	
+	
+	public int getCircleId() {
+		return circleId;
+	}
+
+	public void setCircleId(int circleId) {
+		this.circleId = circleId;
 	}
 
 	public int getCircleMarks() {

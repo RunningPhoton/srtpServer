@@ -80,8 +80,8 @@ public class LogAction extends ActionSupport implements Serializable{
 		if(t1 == null) {
 			return SUCCESS;
 		}
-		TDemoImplUser temp = new TDemoImplUser(t1.getUserName(), t1.getUserNickname(), 
-				t1.getUserGender(), t1.getUserCollege(), t1.getUserDescribe(), t1.getGraphName());
+		TDemoImplUser temp = new TDemoImplUser(t1.getUserId(), t1.getUserName(), t1.getUserNickname(), 
+				t1.getUserGender(), t1.getUserCollege(), t1.getUserDescribe(), t1.getGraphName(), t1.getUserToken());
 		Tools tool = new Tools();
 		this.result = tool.objectToJson(temp);
         return SUCCESS;

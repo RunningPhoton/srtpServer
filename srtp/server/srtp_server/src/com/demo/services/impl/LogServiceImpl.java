@@ -7,6 +7,7 @@ import java.util.List;
 import com.demo.database.data.TDemoUser;
 import com.demo.database.idao.IDaoService;
 import com.demo.services.ILogService;
+import com.demo.tools.Tools;
 
 /**
  * 注册，登录，登出的业务实现类
@@ -51,8 +52,11 @@ public class LogServiceImpl implements ILogService {
 //			if (user.getOnline() == 1) {
 //				return null;
 //			}
-
 			user.setOnline(1);
+			if(user.getUserToken() == null) {
+				Tools tool = new Tools();
+				user.setUserToken(tool.getToken(user.getUserId().toString(), user.getUserName(), user.getGraphName()));
+			}
 			idaoService.update(user);
 //			System.out.println(user.getOnline());
 			return user;
@@ -90,7 +94,9 @@ public class LogServiceImpl implements ILogService {
 		user.setOpertime(new Timestamp(System.currentTimeMillis()));
 		user.setOnline(0);
 		user.setUserAuthority(0);
+		user.setGraphName("http://localhost:8080/srtp_server/upload/head.jpg");
 		// 访问数据库，保存新用户数据
+		
 		idaoService.save(user);
 		return true;
 	}

@@ -24,7 +24,8 @@ public class TDemoUser implements Serializable {
 	private String userPassword;
 	private String userCollege;
 	private String userDescribe;
-
+	private String userToken;
+	
 	private String graphName;
 	private Set<TDemoUser> userFriendSet;
 	private Set<TDemoUser> userBeenFriendSet;
@@ -38,6 +39,15 @@ public class TDemoUser implements Serializable {
 	public String getUserDescribe() {
 		return userDescribe;
 	}
+	
+	public String getUserToken() {
+		return userToken;
+	}
+
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
+	}
+
 
 	public void setUserDescribe(String userDescribe) {
 		this.userDescribe = userDescribe;

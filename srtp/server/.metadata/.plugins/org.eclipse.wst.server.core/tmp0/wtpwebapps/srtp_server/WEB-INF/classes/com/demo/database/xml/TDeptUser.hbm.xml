@@ -28,6 +28,9 @@
 		<property name="userDescribe" type="java.lang.String">
 			<column name="user_describe"></column>
 		</property>
+		<property name="userToken" type="java.lang.String">
+			<column name="user_token"></column>
+		</property>
 		<property name="graphName" type="java.lang.String">
 			<column name="graph_name"></column>
 		</property>

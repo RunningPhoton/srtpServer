@@ -3,12 +3,14 @@ package com.demo.database.data;
 import java.io.Serializable;
 
 public class TDemoImplUser implements Serializable {
+	private int userId;
 	private String userName;
 	private String userNickname;
 	private String userGender;
 	private String userCollege;
 	private String graphName;
 	private String userDescribe;
+	private String userToken;
 	
 	public void print() {
 		System.out.println(userName);
@@ -19,6 +21,25 @@ public class TDemoImplUser implements Serializable {
 		System.out.println(userDescribe);
 	}
 	
+	
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+	public String getUserToken() {
+		return userToken;
+	}
+
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
+	}
+
 	public String getUserDescribe() {
 		return userDescribe;
 	}
@@ -27,14 +48,16 @@ public class TDemoImplUser implements Serializable {
 		this.userDescribe = userDescribe;
 	}
 
-	public TDemoImplUser(String userName, String userNickname, String userGender, 
-			String userCollege, String userDescribe, String graphName) {
+	public TDemoImplUser(int userId, String userName, String userNickname, String userGender, 
+			String userCollege, String userDescribe, String graphName, String userToken) {
+		this.userId = userId;
 		this.userName = userName;
 		this.userNickname = userNickname;
 		this.userGender = userGender;
 		this.userCollege = userCollege;
 		this.userDescribe = userDescribe;
 		this.graphName = graphName;
+		this.userToken = userToken;
 	}
 	
 	public String getUserGender() {

@@ -37,7 +37,7 @@ public class LogServiceImpl implements ILogService {
 		String hql = "from TDemoUser where userName='" + userName
 				+ "' and userPassword='" + password + "'";
 		List<TDemoUser> list = (List<TDemoUser>) idaoService.query(hql);
-		System.out.println("find user size = " + list.size());
+		//System.out.println("find user size = " + list.size());
 		if (list.size() == 0)
 			return null;
 		else {
@@ -52,7 +52,7 @@ public class LogServiceImpl implements ILogService {
 //			if (user.getOnline() == 1) {
 //				return null;
 //			}
-			user.setOnline(1);
+//			user.setOnline(1);
 			if(user.getUserToken() == null) {
 				Tools tool = new Tools();
 				user.setUserToken(tool.getToken(user.getUserId().toString(), user.getUserName(), user.getGraphName()));
@@ -94,7 +94,7 @@ public class LogServiceImpl implements ILogService {
 		user.setOpertime(new Timestamp(System.currentTimeMillis()));
 		user.setOnline(0);
 		user.setUserAuthority(0);
-		user.setGraphName("http://localhost:8080/srtp_server/upload/head.jpg");
+		user.setGraphName("http://120.77.171.222:8080/srtp_server/upload/head.jpg");
 		// 访问数据库，保存新用户数据
 		
 		idaoService.save(user);

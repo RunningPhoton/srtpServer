@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
 <typeInfo handle="=srtp_server/src&lt;com.demo.services{ILogService.java[ILogService" modifiers="513" timestamp="1491130504000"/>
-<typeInfo handle="=srtp_server/src&lt;com.demo.services{IUserService.java[IUserService" modifiers="513" timestamp="1492342744000"/>
+<typeInfo handle="=srtp_server/src&lt;com.demo.services{IUserService.java[IUserService" modifiers="513" timestamp="1494548636000"/>
+<typeInfo handle="=srtp_server/\/Users\/runningphoton\/Desktop\/srtpServer\/srtp\/server\/srtp_server\/WebContent\/WEB-INF\/lib\/hibernate-core-4.2.21.Final.jar&lt;org.hibernate.engine.jdbc(SerializableBlobProxy.class[SerializableBlobProxy" modifiers="33" timestamp="1490684869000"/>
+<typeInfo handle="=srtp_server/\/Library\/Java\/JavaVirtualMachines\/jdk1.8.0_111.jdk\/Contents\/Home\/jre\/lib\/rt.jar&lt;java.lang(Object.class[Object" modifiers="33" timestamp="1474584629000"/>
+<typeInfo handle="=srtp_server/\/Library\/Java\/JavaVirtualMachines\/jdk1.8.0_111.jdk\/Contents\/Home\/jre\/lib\/rt.jar&lt;java.io(Serializable.class[Serializable" modifiers="1537" timestamp="1474584629000"/>
+<typeInfo handle="=srtp_server/\/Users\/runningphoton\/Desktop\/srtpServer\/srtp\/server\/srtp_server\/WebContent\/WEB-INF\/lib\/xwork-core-2.3.31.jar&lt;com.opensymphony.xwork2(ActionSupport.class[ActionSupport" modifiers="33" timestamp="1490684869000"/>
+<typeInfo handle="=srtp_server/src&lt;com.demo.services{IMessageService.java[IMessageService" modifiers="513" timestamp="1494948132000"/>
 </typeInfoHistroy>

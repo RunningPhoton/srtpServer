@@ -29,30 +29,32 @@ public class Tools {
 	 * 移除群组某成员
 	 * 
 	 */
-	public void removeUserOfChatRoom(String userId, String groupId) {
-		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
-		String[] groupQuitUserId = {userId};
-		try {
-			CodeSuccessResult groupQuitResult = rongCloud.group.quit(groupQuitUserId, groupId);
-			System.out.println("融云移除成员完成");
-			System.out.println(groupQuitResult.getCode());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public void removeUserOfChatRoom(String userId, String groupId) {
+//		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
+//		String[] groupQuitUserId = {userId};
+//		try {
+//			CodeSuccessResult groupQuitResult = rongCloud.group.quit(groupQuitUserId, groupId);
+//			System.out.println("融云移除成员完成");
+//			System.out.println(groupQuitResult.getCode());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	/**
 	 * 添加成员到群组
 	 */
-	public Boolean addToChatRoom(String userId, String chatRoomId, String chatRoomName) {
+	public Boolean addToChatRoom(String userId, String chatRoomId) {
 		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
-		String[] groupJoinUserId = {userId};
-		CodeSuccessResult groupJoinResult;
+		
+		// 加入聊天室方法 
+		String[] chatroomJoinUserId = {userId};
+		CodeSuccessResult chatroomJoinResult;
 		try {
-			groupJoinResult = rongCloud.group.join(groupJoinUserId, chatRoomId, chatRoomName);
-			System.out.println("链接融云添加成员到群组完成");
-			System.out.println(groupJoinResult.getCode());
-			return groupJoinResult.getCode().equals(200);
+			chatroomJoinResult = rongCloud.chatroom.join(chatroomJoinUserId, chatRoomId);
+			//System.out.println("链接融云添加成员到群组完成");
+			//System.out.println(chatroomJoinResult.getCode());
+			return chatroomJoinResult.getCode().equals(200);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,12 +67,19 @@ public class Tools {
 	public Boolean createChatRoom(String userId, String roomId, String roomName) {
 		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
 		String[] groupCreateUserId = {userId};
+		
+		
 		try {
-			CodeSuccessResult groupCreateResult = rongCloud.group.create(groupCreateUserId, roomId, roomName);
-
-			System.out.println("链接融云创建群组完成");
-			System.out.println(groupCreateResult.getCode());
-			return groupCreateResult.getCode().equals(200);
+//			CodeSuccessResult groupCreateResult = rongCloud.group.create(groupCreateUserId, roomId, roomName);
+//
+//			System.out.println("链接融云创建群组完成");
+//			System.out.println(groupCreateResult.getCode());
+//			return groupCreateResult.getCode().equals(200);
+			// 创建聊天室方法 
+			ChatRoomInfo[] chatroomCreateChatRoomInfo = {new ChatRoomInfo(roomId, roomName)};
+			CodeSuccessResult chatroomCreateResult = rongCloud.chatroom.create(chatroomCreateChatRoomInfo);
+			//System.out.println("create:  " + chatroomCreateResult.toString());
+			return chatroomCreateResult.getCode().equals(200);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -90,6 +99,24 @@ public class Tools {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
+		}
+	}
+	/**
+	 * 刷新用户信息，需要userId, userName, graphName
+	 */
+	public Boolean refresh(String userId, String userName, String graphName) {
+		RongCloud rongCloud = RongCloud.getInstance(appKey, appSecret);
+		try {
+			CodeSuccessResult result = rongCloud.user.refresh(userId, userName, graphName);
+			if(result.getCode() == 200) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
 		}
 	}
 	/**

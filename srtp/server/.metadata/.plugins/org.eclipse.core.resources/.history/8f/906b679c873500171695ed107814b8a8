@@ -1,9 +1,0 @@
-package com.demo.database.data;
-
-import java.sql.Timestamp;
-
-public interface TDemoIMessage {
-	public String getUserName();
-	public String getContent();
-	public Timestamp getOpertime();
-}

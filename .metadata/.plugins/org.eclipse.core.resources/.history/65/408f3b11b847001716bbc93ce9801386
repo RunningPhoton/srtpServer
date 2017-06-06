@@ -1,0 +1,62 @@
+package com.demo.tools;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Timestamp;
+
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
+import java.lang.Math;
+public class FileHelp {
+	/*
+	 * 得到路径名
+	 */
+	public static String getPath(){
+    	HttpServletRequest request = ServletActionContext.getRequest();
+    	String realPath = request.getSession().getServletContext().getRealPath("");
+		
+		return realPath;
+    }
+	public static String getNo(){
+		long iRandom = Math.round(Math.random() * 100007); 
+		return iRandom + (new Timestamp(System.currentTimeMillis())).toString(); 
+	} 
+	public static String upload(File file, String name) throws Exception{
+		String aa = name.substring(name.lastIndexOf("."));
+		String no = FileHelp.getNo();
+		String path = FileHelp.getPath();
+		File parentDir = new File(path + "\\upload", no + aa);
+		String pname = "upload\\"+ no + aa;
+		System.out.println("path = " + path);
+		System.out.println("parrent dir = " + parentDir);
+		File src = new File(FileHelp.getPath());
+		if (!src.exists()) {
+			src.mkdirs();
+		}
+		InputStream in = null;
+		OutputStream out = null;
+		try {
+			in = new FileInputStream(file);
+			byte[] b = new byte[in.available()];
+			in.read(b);
+			out = new FileOutputStream(parentDir);
+			out.write(b);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (in != null)
+				in.close();
+			if (out != null)
+				out.close();
+		}
+		return pname;
+	}
+}
+
+
+

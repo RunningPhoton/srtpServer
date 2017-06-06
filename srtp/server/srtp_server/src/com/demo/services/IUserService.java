@@ -119,4 +119,5 @@ public interface IUserService {
 	 * 
 	 */
 	public JSONArray listMessageSets(Set<TDemoImplMessage> objSet) throws Exception;
+	public JSONObject listMyCircle(String circleName) throws Exception;
 }

@@ -1,0 +1,11 @@
+127.0.0.1 - - [23/May/2017:11:36:35 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:40:26 +0800] "POST /srtp_server/log!login.action HTTP/1.1" 200 299
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:40:59 +0800] "POST /srtp_server/user!login.action HTTP/1.1" 500 7305
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:41:08 +0800] "POST /srtp_server/user!createCircle.action HTTP/1.1" 404 1040
+127.0.0.1 - - [23/May/2017:11:49:13 +0800] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:49:33 +0800] "POST /srtp_server/user!createCircle.action HTTP/1.1" 200 118
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:50:03 +0800] "POST /srtp_server/log!register.action HTTP/1.1" 200 200
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:50:13 +0800] "POST /srtp_server/log!login.action HTTP/1.1" 200 289
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:50:26 +0800] "POST /srtp_server/log!setCircle.action HTTP/1.1" 500 7314
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:51:02 +0800] "POST /srtp_server/user!setCircle.action HTTP/1.1" 200 120
+0:0:0:0:0:0:0:1 - - [23/May/2017:11:52:22 +0800] "POST /srtp_server/user!addFriend.action HTTP/1.1" 200 301

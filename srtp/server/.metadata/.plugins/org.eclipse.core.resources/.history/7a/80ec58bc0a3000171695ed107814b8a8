@@ -1,8 +1,0 @@
-package com.demo.database.data;
-
-public class TDemoTempUser {
-	private String userName;
-	private String userPassword;
-	
-	
-}

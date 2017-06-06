@@ -11,6 +11,7 @@ public class TDemoImplUser implements Serializable {
 	private String graphName;
 	private String userDescribe;
 	private String userToken;
+	private int code;
 	
 	public void print() {
 		System.out.println(userName);
@@ -22,6 +23,16 @@ public class TDemoImplUser implements Serializable {
 	}
 	
 	
+	public int getCode() {
+		return code;
+	}
+
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+
 	public int getUserId() {
 		return userId;
 	}
@@ -49,7 +60,7 @@ public class TDemoImplUser implements Serializable {
 	}
 
 	public TDemoImplUser(int userId, String userName, String userNickname, String userGender, 
-			String userCollege, String userDescribe, String graphName, String userToken) {
+			String userCollege, String userDescribe, String graphName, String userToken, int code) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userNickname = userNickname;
@@ -58,8 +69,14 @@ public class TDemoImplUser implements Serializable {
 		this.userDescribe = userDescribe;
 		this.graphName = graphName;
 		this.userToken = userToken;
+		this.code = code;
 	}
 	
+	public TDemoImplUser() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getUserGender() {
 		return userGender;
 	}

@@ -105,16 +105,16 @@ public class UserServiceImpl implements IUserService {
 		if(user1 != null) {
 //			user.getUserFriendSet().remove(user1);
 //			user1.getUserBeenFriendSet().remove(user);
-			System.out.println(user.getUserFriendSet().size());
+			//System.out.println(user.getUserFriendSet().size());
 			
 			Iterator iter = user.getUserFriendSet().iterator();
 			while(iter.hasNext()) {
 				TDemoUser temp = (TDemoUser) iter.next();
-				System.out.println(temp.getUserName() + "    " + user1.getUserName());
+				//System.out.println(temp.getUserName() + "    " + user1.getUserName());
 				if(temp.equals(user1)) 
 					iter.remove();
 			}
-			System.out.println(user.getUserFriendSet().size());
+			//System.out.println(user.getUserFriendSet().size());
 			idaoService.update(user);
 		}
 	}
@@ -125,9 +125,9 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean createCircle(String userId, String circleName, String circleDescribe)
 			throws Exception {
-		System.out.println("执行createCircle");
+		//System.out.println("执行createCircle");
 		TDemoCircle circle = this.findByCircleName(circleName);
-		System.out.println("circle = " + circle);
+		//System.out.println("circle = " + circle);
 		if(circle == null) {
 			circle = new TDemoCircle();
 			circle.setCircleMarks(1);
@@ -135,7 +135,7 @@ public class UserServiceImpl implements IUserService {
 			circle.setOpertime(new Timestamp(System.currentTimeMillis()));
 			circle.setCircleDescribe(circleDescribe);
 			idaoService.save(circle);
-			System.out.println("执行circle创建完成");
+			//System.out.println("执行circle创建完成");
 			circle = this.findByCircleName(circle.getCircleName());
 			Tools tool = new Tools();
 			return tool.createChatRoom(userId, circle.getCircleId().toString(), circle.getCircleName());
@@ -151,20 +151,21 @@ public class UserServiceImpl implements IUserService {
 	public void setCircle(TDemoUser user, String circleName) throws Exception {
 		TDemoCircle circle = this.findByCircleName(circleName);
 		
-		System.out.println(circle.getCircleName());
+		//System.out.println(circle.getCircleName());
 //		circle.getUserSet().add(user);
 		user.setUserCircle(circle);
 //		idaoService.update(circle);
-		System.out.println("执行setCircle");
-		idaoService.update(user);
+		//System.out.println("执行setCircle");
+//		idaoService.update(user);
 
-		System.out.println("执行setCircle完成");
+		//System.out.println("执行setCircle完成");
 		Tools tool = new Tools();
-		if(tool.addToChatRoom(user.getUserId().toString(), circle.getCircleId().toString(), circle.getCircleName())) {
-			System.out.println("success add user to circle");
+		if(tool.addToChatRoom(user.getUserId().toString(), circle.getCircleId().toString())) {
+			circle.setCircleMarks(circle.getCircleMarks() + 10);
+			//System.out.println("success add user to circle");
 		}
 		else {
-			System.out.println("fail add user to circle");
+			//System.out.println("fail add user to circle");
 		}
 	}
 
@@ -173,7 +174,7 @@ public class UserServiceImpl implements IUserService {
 	 */
 	@Override
 	public void removeCircle(TDemoUser user, String circleName) throws Exception {
-		TDemoCircle circle = this.findByCircleName(circleName);
+//		TDemoCircle circle = this.findByCircleName(circleName);
 //		circle.getUserSet().remove(user);
 //		Iterator iter = circle.getUserSet().iterator();
 //		while(iter.hasNext()) {
@@ -182,10 +183,10 @@ public class UserServiceImpl implements IUserService {
 //			}
 //		}
 //		idaoService.update(circle);
-		user.setUserCircle(null);
-		idaoService.update(user);
-		Tools tool = new Tools();
-		tool.removeUserOfChatRoom(user.getUserId().toString(), circle.getCircleId().toString());
+//		user.setUserCircle(null);
+//		idaoService.update(user);
+//		Tools tool = new Tools();
+//		tool.removeUserOfChatRoom(user.getUserId().toString(), circle.getCircleId().toString());
 	}
 	/**
 	 * 向用户发送消息
@@ -215,7 +216,7 @@ public class UserServiceImpl implements IUserService {
 	public void sendCircleMessage(TDemoUser user, String circleMessageContent) throws Exception {
 		
 
-		System.out.println(user.getUserName());
+		//System.out.println(user.getUserName());
 		TDemoCircle circle = this.findByCircleName(user.getUserCircle().getCircleName());
 		TDemoCircleMessage circleMessage = new TDemoCircleMessage();
 		circleMessage.setCircle(circle);
@@ -256,7 +257,7 @@ public class UserServiceImpl implements IUserService {
 		while(iter.hasNext()) {
 			TDemoUser cur = (TDemoUser) iter.next();
 			obj.add(new TDemoImplUser(cur.getUserId(), cur.getUserName(), cur.getUserNickname(), 
-					cur.getUserGender(), cur.getUserCollege(), cur.getUserDescribe(), cur.getGraphName(), cur.getUserToken()));
+					cur.getUserGender(), cur.getUserCollege(), cur.getUserDescribe(), cur.getGraphName(), cur.getUserToken(), 200));
 			
 		}
 		return tool.setToJson(obj);
@@ -287,7 +288,7 @@ public class UserServiceImpl implements IUserService {
 			return null;
 		Tools tool = new Tools();
 		TDemoImplUser cur = new TDemoImplUser(obj.getUserId(), obj.getUserName(), obj.getUserNickname(), 
-				obj.getUserGender(), obj.getUserCollege(), obj.getUserDescribe(), obj.getGraphName(), obj.getUserToken());
+				obj.getUserGender(), obj.getUserCollege(), obj.getUserDescribe(), obj.getGraphName(), obj.getUserToken(), 200);
 		cur.print();
 		return tool.objectToJson(cur);
 	}
@@ -303,7 +304,7 @@ public class UserServiceImpl implements IUserService {
 		for(int i = 0; i < list.size(); i++) {
 			TDemoCircle now = list.get(i);
 			temp.add(new TDemoImplCircle(now.getCircleId(), now.getCircleName(), 
-					now.getUserSet().size(), now.getOpertime(), now.getCircleMarks(), now.getGraphName()));
+					now.getUserSet().size(), now.getOpertime(), now.getCircleMarks(), now.getGraphName(), 200));
 		}
 		Tools tool = new Tools();
 		return tool.listToJson(temp);
@@ -318,7 +319,17 @@ public class UserServiceImpl implements IUserService {
 			return null;
 		TDemoCircle circle = user.getUserCircle();
 		TDemoImplCircle cur = new TDemoImplCircle(circle.getCircleId(), circle.getCircleName(), 
-				circle.getUserSet().size(), circle.getOpertime(), circle.getCircleMarks(), circle.getGraphName());
+				circle.getUserSet().size(), circle.getOpertime(), circle.getCircleMarks(), circle.getGraphName(), 200);
+		Tools tool = new Tools();
+		return tool.objectToJson(cur);
+	}
+
+	@Override
+	public JSONObject listMyCircle(String circleName) throws Exception {
+		// TODO Auto-generated method stub
+		TDemoCircle circle = findByCircleName(circleName);
+		TDemoImplCircle cur = new TDemoImplCircle(circle.getCircleId(), circle.getCircleName(), 
+				circle.getUserSet().size(), circle.getOpertime(), circle.getCircleMarks(), circle.getGraphName(), 200);
 		Tools tool = new Tools();
 		return tool.objectToJson(cur);
 	}

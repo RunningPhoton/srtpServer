@@ -62,12 +62,11 @@ public class LogAction extends ActionSupport implements Serializable{
 	 */
 	public String login() {
 		try {
-			System.out.println("执行login代码");
-			System.out.println(user.getUserName() + "  " + user.getUserPassword());
+			
 			this.user = ilogService.login(user.getUserName(), user.getUserPassword());
 			return userToJson(this.user);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return ERROR;
 		}
 	}
@@ -77,12 +76,15 @@ public class LogAction extends ActionSupport implements Serializable{
 	 * @return
 	 */
 	public String userToJson(TDemoUser t1) {
-		if(t1 == null) {
-			return SUCCESS;
-		}
-		TDemoImplUser temp = new TDemoImplUser(t1.getUserId(), t1.getUserName(), t1.getUserNickname(), 
-				t1.getUserGender(), t1.getUserCollege(), t1.getUserDescribe(), t1.getGraphName(), t1.getUserToken());
 		Tools tool = new Tools();
+		TDemoImplUser temp;
+		if(t1 == null) {
+			temp = new TDemoImplUser();
+			temp.setCode(0);
+		} else {
+			temp = new TDemoImplUser(t1.getUserId(), t1.getUserName(), t1.getUserNickname(), 
+					t1.getUserGender(), t1.getUserCollege(), t1.getUserDescribe(), t1.getGraphName(), t1.getUserToken(), 200);
+		}
 		this.result = tool.objectToJson(temp);
         return SUCCESS;
 	}
@@ -97,7 +99,7 @@ public class LogAction extends ActionSupport implements Serializable{
 			ilogService.logout(baseUser);
 			return SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return ERROR;
 		}
 	}
@@ -107,14 +109,14 @@ public class LogAction extends ActionSupport implements Serializable{
 	 */
 	public String register() {
 		try {
-			System.out.println("执行register代码");
+//			System.out.println("执行register代码");
 			if(ilogService.register(this.user))
 				return this.userToJson(this.user);
 			else 
 				this.result = null;
 			return SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return ERROR;
 		}
 	}

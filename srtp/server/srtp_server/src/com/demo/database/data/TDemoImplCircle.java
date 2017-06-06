@@ -7,6 +7,7 @@ import java.util.Date;
 import org.apache.tomcat.jni.Time;
 
 public class TDemoImplCircle  implements Serializable {
+	private int code;
 	private int circleId;
 	private String circleName;
 	private int userCounts;
@@ -15,17 +16,30 @@ public class TDemoImplCircle  implements Serializable {
 	private String graphName;
 	
 	public TDemoImplCircle(int circleId, String circleName, int userCounts, Date opertime,
-			Integer circleMarks, String graphName) {
+			Integer circleMarks, String graphName, int code) {
 		this.circleId = circleId;
 		this.circleName = circleName;
 		this.userCounts = userCounts;
 		this.opertime = opertime.getTime();
 		this.circleMarks = circleMarks;
 		this.graphName = graphName;
+		this.code = code;
 	}
 
 	
 	
+	public int getCode() {
+		return code;
+	}
+
+
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+
+
 	public int getCircleId() {
 		return circleId;
 	}

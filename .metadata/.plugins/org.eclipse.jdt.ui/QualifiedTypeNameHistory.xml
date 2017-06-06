@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.demo.database.data.TDemoImplUser"/>
+<fullyQualifiedTypeName name="com.demo.services.IUserService"/>
+<fullyQualifiedTypeName name="com.demo.services.impl.UserServiceImpl"/>
+<fullyQualifiedTypeName name="com.demo.database.data.TDemoUser"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.UploadContext"/>
+<fullyQualifiedTypeName name="com.demo.services.UploadImageBiz"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="com.demo.tools.FileHelp"/>
+</qualifiedTypeNameHistroy>

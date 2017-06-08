@@ -162,6 +162,7 @@ public class UserServiceImpl implements IUserService {
 		Tools tool = new Tools();
 		if(tool.addToChatRoom(user.getUserId().toString(), circle.getCircleId().toString())) {
 			circle.setCircleMarks(circle.getCircleMarks() + 10);
+			idaoService.update(circle);
 			//System.out.println("success add user to circle");
 		}
 		else {
@@ -300,6 +301,7 @@ public class UserServiceImpl implements IUserService {
 	public JSONArray listAllCircle() throws Exception {
 		String hql = "from TDemoCircle";
 		List<TDemoCircle> list = (List<TDemoCircle>) idaoService.query(hql);
+		System.out.println(list.toString());
 		List<Object> temp = new ArrayList<Object>();
 		for(int i = 0; i < list.size(); i++) {
 			TDemoCircle now = list.get(i);
@@ -314,13 +316,16 @@ public class UserServiceImpl implements IUserService {
 	 * 展示用户circle信息，null表示未添加任何circle
 	 */
 	@Override
-	public JSONObject listMyCircle(TDemoUser user) throws Exception {
-		if(user == null)
-			return null;
-		TDemoCircle circle = user.getUserCircle();
-		TDemoImplCircle cur = new TDemoImplCircle(circle.getCircleId(), circle.getCircleName(), 
-				circle.getUserSet().size(), circle.getOpertime(), circle.getCircleMarks(), circle.getGraphName(), 200);
+	public JSONObject listMyCircle(TDemoCircle circle) throws Exception {
 		Tools tool = new Tools();
+		TDemoImplCircle cur = null;
+		if(circle == null) 
+			cur = new TDemoImplCircle(0, null, 0, null, null, null, 0);
+		else 
+			cur = new TDemoImplCircle(circle.getCircleId(), circle.getCircleName(), 
+				circle.getUserSet().size(), circle.getOpertime(), 
+				circle.getCircleMarks(), circle.getGraphName(), 200);
+		
 		return tool.objectToJson(cur);
 	}
 

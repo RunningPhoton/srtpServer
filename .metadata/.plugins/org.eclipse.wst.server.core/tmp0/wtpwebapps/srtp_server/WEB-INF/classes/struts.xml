@@ -8,7 +8,7 @@
 	<!-- 设置Struts2常量 -->
 	<!-- 启用动态方法访问 -->
 	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
-	<constant name="struts.multipart.saveDir" value="tmpfile"/>
+	<!-- <constant name="struts.multipart.saveDir" value="tmpfile"/> -->
 	<!-- 定义包 -->
 	<package namespace="/" name="default" extends="struts-default,json-default">
 

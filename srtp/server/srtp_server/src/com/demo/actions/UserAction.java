@@ -46,16 +46,7 @@ public class UserAction extends ActionSupport {
 	private JSONArray many;
 	private JSONObject one;
 	private File file;
-
 	
-//	public String getFile() {
-//		return file;
-//	}
-//
-//	public void setFile(String file) {
-//		this.file = file;
-//	}
-
 	public File getFile() {
 		return file;
 	}
@@ -330,12 +321,9 @@ public class UserAction extends ActionSupport {
 	 * @return
 	 */
 	public String listCircle() {
-		this.user = iuserService.findByUserName(this.user.getUserName());
+		TDemoCircle circle = iuserService.findByCircleName(operObject);
 		try {
-			if (this.user.getUserCircle() == null) {
-				return listAllCircle();
-			}
-			this.one = iuserService.listMyCircle(this.user);
+			this.one = iuserService.listMyCircle(circle);
 			return "one";
 		} catch (Exception e) {
 			// System.out.println(e);
